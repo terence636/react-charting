@@ -1,10 +1,10 @@
 import './App.css';
-import StockChart from "./components/StockChart"
+import CandleStickChartSimple from "./components/CandleStickChartSimple"
 
 function App() {
   return (
     <div className="App">
-      <StockChart />
+      <CandleStickChartSimple />
     </div>
   );
 }
