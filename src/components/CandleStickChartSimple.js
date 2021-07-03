@@ -23,7 +23,7 @@ const CandleStickChartSimple = (props) => {
   // https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=demo
   const baseURL = "https://financialmodelingprep.com/api/v3/";
   const functionType = "historical-price-full/";
-  const symbol = "BABA"; // PUT props.symbol here
+  const symbol = props.symbol //"BABA"; // PUT props.symbol here
   const apiKey = "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
   const URL = baseURL + functionType + symbol + apiKey;
   // const URL1 = 'https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=316ff3fb75ec7264440cd255a2cede4e'
@@ -83,7 +83,7 @@ const CandleStickChartSimple = (props) => {
         setIsPending(false);
         setError(err.message);
       });
-  }, []);
+  }, [props.symbol]);
 
   
   if (allData === null) return <div>Loading...</div>;
@@ -100,11 +100,11 @@ const CandleStickChartSimple = (props) => {
 
   return (
     <div>
-      <h1>STOCKS CHARTING</h1>
+      <h1><span className="symbolName">{symbolName}</span> </h1>
       <hr />
       {error && <div>state err.message - {error}</div>}
       <hr />
-      {symbolName} {width}
+      <h6><span className="closePrice">${data[data.length-1].close}</span> Windows{width}</h6>
       <hr />
       <ChartCanvas
         height={600}
@@ -119,12 +119,12 @@ const CandleStickChartSimple = (props) => {
         displayXAccessor={displayXAccessor}
         xExtents={xExtents}
       >
-        <Chart id={1} height={400} yExtents={(d) => [d.high, d.low]}>
+        <Chart id={1} height={300} yExtents={(d) => [d.high, d.low]}>
           <YAxis axisAt="right" orient="right" ticks={5} />
           <XAxis axisAt="bottom" orient="bottom" showTicks={false} />
           <CandlestickSeries />
         </Chart>
-        <Chart id={2} origin={(w, h) => [0, h - 150]} height={150} yExtents={d => d.volume}>
+        <Chart id={2} origin={(w, h) => [0, h - 200]} height={100} yExtents={d => d.volume}>
 					<XAxis axisAt="bottom" orient="bottom"/>
 					<YAxis axisAt="left" orient="left" ticks={5} tickFormat={format(".2s")}/>
 					<BarSeries yAccessor={d => d.volume} fill={(d) => d.close > d.open ? "#6BA583" : "red"} />
