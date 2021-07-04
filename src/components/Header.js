@@ -22,7 +22,7 @@ const Header = ({setSymbol}) => {
       {/* <div className="nav-item"><span className="nav-logo"><Link to="/">AWESOMECHART</Link></span></div> */}
       <div className="nav-item"><span className="nav-logo">AWESOMECHART</span></div>
       <div className="nav-item"><Link to="/dashboard">Dashboard</Link></div>
-      <div className="nav-item"><Link to="/scanner">Scanner</Link></div>
+      <div className="nav-item"><Link to="/news">News</Link></div>
       <div className="nav-item">
           <input type="text" placeholder="symbol" ref={inputRefSymbol}/>
           <button onClick={handleAdd}>Add</button>

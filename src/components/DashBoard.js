@@ -36,7 +36,7 @@ const catSelection = (state, action) => {
 
 
 
-const DashBoard = ({ symbol }) => {
+const DashBoard = ({ symbol, setSymbol}) => {
     
     const [selection, dispatch] = React.useReducer(catSelection, "actives")
     // const [listName, setListName] = useState("DJ30")
@@ -48,12 +48,12 @@ const DashBoard = ({ symbol }) => {
             CATEGORY
             <Category catSelection={dispatch}/>
           </div>
-          <div className="col-3">
+          <div className="col-3 dash">
             DASHBOARD
-            <DashboardCol selection={selection}/>
+            <DashboardCol selection={selection} setSymbol={setSymbol}/>
           </div>
-          <div className="col-7">
-            <CandleStickChartSimple symbol={symbol}/>
+          <div className="col-7 chart">
+            <CandleStickChartSimple className="candlechart" symbol={symbol}/>
           </div>
       </div>
     </div>

@@ -56,7 +56,7 @@ const DashboardCol = (props) => {
 
   // FROM DATA RECEIVED ITERATE THE lIST USING MAP
   const stockList = dataState.map((stock,index)=>{
-    return <DashboardRow symbol={stock.ticker} price={stock.price} change={stock.changesPercentage}/>
+    return <DashboardRow key={index} symbol={stock.ticker} price={stock.price} change={stock.changesPercentage} setSymbol={props.setSymbol}/>
   })
 
   return (

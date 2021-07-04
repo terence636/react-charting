@@ -12,7 +12,7 @@ import { fitWidth } from "react-stockcharts/lib/helper"
 // import { tsvParse, csvParse } from "d3-dsv"
 
 // I NEED CHART TYPE AND DATA IN PROPS
-let CandleStickChartSimple = (props) => {
+const CandleStickChartSimple = (props) => {
   // State
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
@@ -38,8 +38,8 @@ let CandleStickChartSimple = (props) => {
 
   useEffect(() => {
 
-    updateDimensions()
-    window.addEventListener("resize", updateDimensions)
+    // updateDimensions()
+    // window.addEventListener("resize", updateDimensions)
 
     fetch(URL)
       .then((res) => {
@@ -62,6 +62,7 @@ let CandleStickChartSimple = (props) => {
         const data = processData(dataReceived);
         setAllData(data);
         setSymbolName(dataReceived.symbol)
+        setError(null)
         console.log("allData =>", data);
         // COLLECT DATE AND PRICE POINT
         // for (let obj of data["historical"]) {
@@ -100,11 +101,9 @@ let CandleStickChartSimple = (props) => {
   const xExtents = [start, end];
 
   return (
-    <>
+    <div className="candlechart">
       <h1><span className="symbolName">{symbolName}</span> </h1>
-      <hr />
-      {error && <div>state err.message - {error}</div>}
-      <hr />
+      {error && <div><hr />state err.message - {error}<hr /></div>}
       {/* <h6><span className="closePrice">${data[data.length-1].close}</span> Windows{width}</h6> */}
       <h6><span className="closePrice">${data[data.length-1].close}</span></h6>
       <hr />
@@ -132,11 +131,11 @@ let CandleStickChartSimple = (props) => {
 					<BarSeries yAccessor={d => d.volume} fill={(d) => d.close > d.open ? "#6BA583" : "red"} />
 				</Chart>
       </ChartCanvas>
-    </>
+    </div>
   );
 };
 
-CandleStickChartSimple = fitWidth(CandleStickChartSimple)
+// CandleStickChartSimple = fitWidth(CandleStickChartSimple)
 
 export default CandleStickChartSimple;
 
