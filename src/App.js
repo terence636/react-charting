@@ -1,5 +1,5 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import './App.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router } from 'react-router-dom'
 import React, {useState} from 'react'
 
@@ -17,7 +17,8 @@ function App() {
 
   return (
     <Router>
-    <div className="App">
+    {/* <div className="App"> */}
+    <div>
       <Header setSymbol={setSymbol}/>
       <DashBoard symbol={symbol}/>,
       {/* <CandleStickChartSimple symbol={symbol}/> */}

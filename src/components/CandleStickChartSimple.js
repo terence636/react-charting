@@ -6,12 +6,13 @@ import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
 import { last } from "react-stockcharts/lib/utils";
 import { XAxis, YAxis } from "react-stockcharts/lib/axes";
 import { BarSeries, CandlestickSeries } from "react-stockcharts/lib/series";
+import { fitWidth } from "react-stockcharts/lib/helper"
 
 // import { fitWidth } from "react-stockcharts/lib/helper"
 // import { tsvParse, csvParse } from "d3-dsv"
 
 // I NEED CHART TYPE AND DATA IN PROPS
-const CandleStickChartSimple = (props) => {
+let CandleStickChartSimple = (props) => {
   // State
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
@@ -31,7 +32,7 @@ const CandleStickChartSimple = (props) => {
   console.log("apiKey", apiKey);
 
   const updateDimensions = () => {
-    const width = window.innerWidth
+    const width = window.innerWidth -200
     setWidth(width)
   }
 
@@ -99,19 +100,20 @@ const CandleStickChartSimple = (props) => {
   const xExtents = [start, end];
 
   return (
-    <div>
+    <>
       <h1><span className="symbolName">{symbolName}</span> </h1>
       <hr />
       {error && <div>state err.message - {error}</div>}
       <hr />
-      <h6><span className="closePrice">${data[data.length-1].close}</span> Windows{width}</h6>
+      {/* <h6><span className="closePrice">${data[data.length-1].close}</span> Windows{width}</h6> */}
+      <h6><span className="closePrice">${data[data.length-1].close}</span></h6>
       <hr />
       <ChartCanvas
         height={600}
-        ratio={1}
-        width={width}
+        ratio={1.25}
+        width={700}
         margin={{ left: 50, right: 50, top: 10, bottom: 30 }}
-        type="hybrid"
+        type="svg"
         seriesName={symbolName}
         data={data}
         xScale={xScale}
@@ -130,11 +132,11 @@ const CandleStickChartSimple = (props) => {
 					<BarSeries yAccessor={d => d.volume} fill={(d) => d.close > d.open ? "#6BA583" : "red"} />
 				</Chart>
       </ChartCanvas>
-    </div>
+    </>
   );
 };
 
-// StockChart = fitWidth(StockChart)
+CandleStickChartSimple = fitWidth(CandleStickChartSimple)
 
 export default CandleStickChartSimple;
 
