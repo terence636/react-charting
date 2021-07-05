@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import '/Users/tchan/SEI-30/react-charting/node_modules/bootstrap/dist/css/bootstrap.min.css'
 import CandleStickChartSimple from "./CandleStickChartSimple";
 import Category from './Category.js'
 import DashboardCol from './DashboardCol'
+import Watchlist from './Watchlist'
 
 // HERE WILL HAVE 3 COMPONENTS
 // 1. LEFT NAV BAR, 2. DASHBOARD, 3. CHARRTS
@@ -36,22 +37,40 @@ const catSelection = (state, action) => {
 
 
 
-const DashBoard = ({ symbol, setSymbol}) => {
+const DashBoard = ({ symbol, setSymbol }) => {
     
     const [selection, dispatch] = React.useReducer(catSelection, "actives")
-    // const [listName, setListName] = useState("DJ30")
+    const [watchList, setWatchList] = useState([])
+
+    const onAddWatchListToggle = (symbol) => {
+      setWatchList(prev=>[...prev,symbol])
+      console.log(symbol)
+      console.log(watchList)
+    }
+
 
   return (
-    <div className="container1">
+    <div className="container-fluid p-0">
       <div className="row">
           <div className="col-2 cat" >
             CATEGORY
             <Category catSelection={dispatch}/>
           </div>
-          <div className="col-3 dash">
+          <div className="col-3">
+          <div className="row mainlist">
             DASHBOARD
-            <DashboardCol selection={selection} setSymbol={setSymbol}/>
+            <DashboardCol selection={selection} setSymbol={setSymbol} onAddWatchListToggle={onAddWatchListToggle} />
+            </div>
+            <div className="row watchlist" >
+              WATCHLIST
+            <Watchlist watchList={watchList}/>
+            </div>
+            
           </div>
+
+
+      
+          
           <div className="col-7 chart">
             <CandleStickChartSimple className="candlechart" symbol={symbol}/>
           </div>

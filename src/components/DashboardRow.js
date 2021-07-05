@@ -1,22 +1,22 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import AddToWatch from './AddToWatch'
 
 
-const DashboardRow = ({ symbol, price, change, setSymbol }) => {
+const DashboardRow = ({ symbol, price, change, setSymbol, isFave, onAddWatchListToggle }) => {
 
 
-const handleClick = () => {
-    console.log("test")
+const handleSymbolClick = () => {
     setSymbol(symbol)
 }
 
 
 return (
     <tr>
-      <td><a href='#' onClick={handleClick}>{symbol}</a></td>
+      <td><a href='#' onClick={handleSymbolClick}>{symbol}</a></td>
        {/* <td><Link to={} onClick={handleClick}>{symbol}</Link></td> */}
       <td>{price}</td>
       <td>{change}</td>
+      <td><AddToWatch symbol={symbol} isFave={isFave} onAddWatchListToggle={onAddWatchListToggle}/></td>
     </tr>
   );
 };

@@ -6,7 +6,8 @@ import React, {useState} from 'react'
 // BELOW ARE ALL COMPONENTS
 import Header from './components/Header'
 import DashBoard from './components/DashBoard';
-import Calendar from './components/News'
+import News from './components/News'
+// import Home from './components/Home'
 
 function App() {
   const [symbol, setSymbol] = useState("AAPL")
@@ -17,11 +18,15 @@ function App() {
     <div>
       <Header setSymbol={setSymbol}/>
       <Switch>
-        <Route path="/dashboard">
+        {/* <Route exact path ="/">
+          <Home />
+        </Route> */}
+        {/* <Route path="/dashboard"> */}
+        <Route exact path="/" >
           <DashBoard symbol={symbol} setSymbol={setSymbol}/>,
         </Route>
         <Route path="/news">
-          <Calendar />
+          <News symbol={symbol}/>
         </Route>
       </Switch>
     </div>

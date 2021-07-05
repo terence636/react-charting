@@ -7,7 +7,7 @@ const Header = ({setSymbol}) => {
 
    const handleAdd = () => {
         console.log(inputRefSymbol.current.value)
-        // setSymbol(inputRefSymbol.current.value)
+        setSymbol(inputRefSymbol.current.value)
    }
 
    window.addEventListener("keyup",(event)=> {
@@ -20,12 +20,13 @@ const Header = ({setSymbol}) => {
   return (
     <div className="nav">
       {/* <div className="nav-item"><span className="nav-logo"><Link to="/">AWESOMECHART</Link></span></div> */}
-      <div className="nav-item"><span className="nav-logo">AWESOMECHART</span></div>
-      <div className="nav-item"><Link to="/dashboard">Dashboard</Link></div>
+      {/* <div className="nav-item"><Link to="/"><span className="nav-logo">AWESOMECHART</span></Link></div> */}
+      <div className="nav-item"><span className="nav-logo">iFinance</span></div>
+      <div className="nav-item"><Link to="/">Dashboard</Link></div>
       <div className="nav-item"><Link to="/news">News</Link></div>
       <div className="nav-item">
           <input type="text" placeholder="symbol" ref={inputRefSymbol}/>
-          <button onClick={handleAdd}>Add</button>
+          <button className="letsgo" onClick={handleAdd}>Let's Go...</button>
       </div>
       
 

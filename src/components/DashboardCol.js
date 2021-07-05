@@ -1,4 +1,3 @@
-import { symbol } from "prop-types";
 import React, { useEffect, useState } from "react";
 import DashboardRow from './DashboardRow'
 
@@ -56,7 +55,10 @@ const DashboardCol = (props) => {
 
   // FROM DATA RECEIVED ITERATE THE lIST USING MAP
   const stockList = dataState.map((stock,index)=>{
-    return <DashboardRow key={index} symbol={stock.ticker} price={stock.price} change={stock.changesPercentage} setSymbol={props.setSymbol}/>
+    return <DashboardRow key={index} symbol={stock.ticker} price={stock.price} change={stock.changesPercentage} 
+        setSymbol={props.setSymbol}
+        onAddWatchListToggle={()=>props.onAddWatchListToggle(stock.ticker)}
+        />
   })
 
   return (

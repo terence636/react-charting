@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
@@ -35,7 +41,7 @@
 }
 
 table {
-  text-align: left;
+  text-align: center;
   width: 100%;
 }
 
@@ -58,18 +64,13 @@ td {
   font-weight: bold;
 }
 
-.categoryList {
-  /* display: flex;
-  flex-direction: column; */
-}
-
 .categoryButtons {
   margin: 10px;
 
 }
 
 .cat {
-  background-color: rgb(255, 217, 0);
+  background-color: rgb(207, 202, 175);
   text-align: center;
 }
 
@@ -81,4 +82,67 @@ td {
 .chart {
   background-color: rgb(221, 227, 236);
   /* text-align: center; */
+}
+
+.letsgo {
+  margin: 10px;
+}
+
+.newsContainer {
+  display: flex;
+}
+
+.mainlist {
+  height: 60vh;
+  overflow-y: scroll;
+  text-align: center;
+  background-color: rgb(196, 219, 240);
+  border-color: 5px solid black; 
+}
+
+.mainlist::-webkit-scrollbar-track {
+  /* -webkit-box-shadow: inset 0 0 6px grey; */
+  border-radius: 10px;
+  background-color: rgb(254, 255, 254);
+
+}
+
+.mainlist::-webkit-scrollbar {
+  width:12px;
+  background-color: rgb(144, 151, 144);
+}
+
+.mainlist::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
+  background-color: rgb(121, 120, 120);
+
+}
+
+.watchlist {
+  /* height: 50%; */
+  /* position: absolute; */
+  overflow-y: scroll;
+  background-color: rgb(196, 219, 240);
+  
+ 
+}
+
+.watchlist::-webkit-scrollbar-track {
+  /* -webkit-box-shadow: inset 0 0 6px grey; */
+  border-radius: 10px;
+  background-color: rgb(254, 255, 254);
+
+}
+
+.watchlist::-webkit-scrollbar {
+  width:12px;
+  background-color: rgb(144, 151, 144);
+}
+
+.watchlist::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
+  background-color: rgb(121, 120, 120);
+
 }

@@ -6,10 +6,6 @@ import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
 import { last } from "react-stockcharts/lib/utils";
 import { XAxis, YAxis } from "react-stockcharts/lib/axes";
 import { BarSeries, CandlestickSeries } from "react-stockcharts/lib/series";
-import { fitWidth } from "react-stockcharts/lib/helper"
-
-// import { fitWidth } from "react-stockcharts/lib/helper"
-// import { tsvParse, csvParse } from "d3-dsv"
 
 // I NEED CHART TYPE AND DATA IN PROPS
 const CandleStickChartSimple = (props) => {
@@ -110,7 +106,7 @@ const CandleStickChartSimple = (props) => {
       <ChartCanvas
         height={600}
         ratio={1.25}
-        width={700}
+        width={780}
         margin={{ left: 50, right: 50, top: 10, bottom: 30 }}
         type="svg"
         seriesName={symbolName}
