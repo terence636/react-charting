@@ -1,6 +1,6 @@
 // import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import React, {useState} from 'react'
 
 // BELOW ARE ALL COMPONENTS
@@ -18,11 +18,9 @@ function App() {
     <div>
       <Header symbol={symbol} setSymbol={setSymbol}/>
       <Switch>
-        {/* <Route exact path ="/">
-          <Home />
-        </Route> */}
-        {/* <Route path="/dashboard"> */}
-        
+        <Route exact path ="/">
+        <Redirect to={`/Dashboard/${symbol}`} />
+        </Route>
         <Route path="/News/:symbolParam">
           <News symbol={symbol}/>
         </Route>

@@ -16,7 +16,7 @@ import Watchlist from './Watchlist'
 const catSelection = (state, action) => {
   switch(action){
     case "ACTIVE":
-        console.log("active")
+        console.log("actives")
         return "actives"
     case "INDEX":
         console.log("index")
@@ -40,13 +40,21 @@ const catSelection = (state, action) => {
 
 const DashBoard = ({ symbol, setSymbol }) => {
     
-    const [selection, dispatch] = React.useReducer(catSelection, "actives")
-    const [watchList, setWatchList] = useState([])
+    const [category, dispatch] = React.useReducer(catSelection, "actives")
+    const [watchlist, setWatchList] = useState([])
 
-    const onAddWatchListToggle = (symbol) => {
-      setWatchList(prev=>[...prev,symbol])
-      console.log(symbol)
-      console.log(watchList)
+    const onAddWatchList = (stockObj) => {
+      if(watchlist.every(s=>s.ticker !== stockObj.ticker))
+      // if(watchlist.includes(symbol) === false)
+        setWatchList(prev=>[...prev,stockObj])
+      console.log(stockObj)
+      console.log(watchlist)
+    }
+
+    const onRemoveWatchList = (symbol) => {
+      // const index = wathclist.findIndex(symbol)
+      const newlist = watchlist.filter((d)=>d.ticker !== symbol)
+        setWatchList(newlist)
     }
   
     let { symbolParam } = useParams();
@@ -59,14 +67,15 @@ const DashBoard = ({ symbol, setSymbol }) => {
             CATEGORY
             <Category catSelection={dispatch}/>
           </div>
+          
           <div className="col-3">
           <div className="row mainlist">
             DASHBOARD
-            <DashboardCol selection={selection} setSymbol={setSymbol} onAddWatchListToggle={onAddWatchListToggle} />
+            <DashboardCol category={category} watchlist={watchlist} setSymbol={setSymbol} onAddWatchList={onAddWatchList} />
             </div>
             <div className="row watchlist" >
               WATCHLIST
-            <Watchlist watchList={watchList}/>
+            <Watchlist watchList={watchlist} setSymbol={setSymbol} onRemoveWatchList={onRemoveWatchList}/>
             </div>
             
           </div>

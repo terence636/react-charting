@@ -81,7 +81,7 @@ const CandleStickChartSimple = (props) => {
         setIsPending(false);
         setError(err.message);
       });
-  }, [props.symbol]);
+  }, [props.symbolParam]);
 
   
   // {error && <div><hr />state err.message - {error}<hr /></div>}

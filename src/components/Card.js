@@ -1,5 +1,5 @@
 import React from "react";
-{/* <Card key={index} title={news.title} img={news.image} site={site} summary={news.text} url={news.url}/> */}
+
 const Card = (props) => {
   return (
     <div className="card" style={{ width: "18rem" }}>
@@ -10,7 +10,7 @@ const Card = (props) => {
       />
       <div className="card-body">
         <h5 className="card-title">
-          {props.title}}
+          {props.title}
         </h5>
         <p className="card-text">
           {props.summary}

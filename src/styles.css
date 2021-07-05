@@ -92,6 +92,10 @@ td {
   display: flex;
 }
 
+.card {
+  margin: 10px;
+}
+
 .mainlist {
   height: 60vh;
   overflow-y: scroll;
@@ -122,6 +126,7 @@ td {
 .watchlist {
   /* height: 50%; */
   /* position: absolute; */
+  margin: 10px;
   overflow-y: scroll;
   background-color: rgb(196, 219, 240);
   

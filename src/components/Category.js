@@ -1,7 +1,7 @@
 import React from "react";
 
 const Category = (props) => {
-  const categoryList = ["ACTIVE", "TOP GAINERS", "TOP LOSERS", "INDEX", "WATCHLISTS"];
+  const categoryList = ["ACTIVE", "TOP GAINERS", "TOP LOSERS", "WATCHLISTS"];
 
   const categoryButtons = categoryList.map((cat, index) => {
     return (

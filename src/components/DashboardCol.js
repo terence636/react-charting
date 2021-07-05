@@ -17,13 +17,13 @@ const DashboardCol = (props) => {
     const [dataState, setDataState] = useState(null)
 
     const baseURL = "https://financialmodelingprep.com/api/v3/";
-    const functionType = props.selection; //"actives";
-    // const symbol = props.symbol //"BABA"; // PUT props.symbol here
+    const functionType = props.category; //"actives";
     const apiKey = "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
-    const demoKey = "apiKey=demo"
     const URL = baseURL + functionType + apiKey;
 
   useEffect(() => {
+    
+
     fetch(URL)
       .then((res) => {
         console.log(res);
@@ -49,21 +49,24 @@ const DashboardCol = (props) => {
         // setIsPending(false);
         setErrorState(err.message);
       });
-  }, [props.selection]);
+  }, [props.category]);
 
+  // {errorState && <div>state err.message - {errorState}</div>}
+  if (errorState !== null) return <div>Error - {errorState}</div>
   if (dataState === null) return <div>Loading...</div>;
 
   // FROM DATA RECEIVED ITERATE THE lIST USING MAP
   const stockList = dataState.map((stock,index)=>{
     return <DashboardRow key={index} symbol={stock.ticker} price={stock.price} change={stock.changesPercentage} 
         setSymbol={props.setSymbol}
-        onAddWatchListToggle={()=>props.onAddWatchListToggle(stock.ticker)}
+        isAdded={props.watchlist.some((s)=>s.ticker===stock.ticker)}
+        onAddWatchList={()=>props.onAddWatchList(stock)}
         />
   })
 
   return (
     <>
-      <div>({props.selection})</div>
+      <div>({props.category})</div>
       <table>
         <thead>
           <tr>
@@ -73,7 +76,7 @@ const DashboardCol = (props) => {
           </tr>
         </thead>
         <tbody>
-            {errorState && <div>state err.message - {errorState}</div>}
+            
             {stockList}
           {/* <tr>
             <td>AAPL</td>

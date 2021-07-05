@@ -35,7 +35,7 @@ const News = (props) => {
           })
           .then((dataReceived) => {
             // setIsPending(false);
-        
+            
             if (dataReceived["Error Message"] !== undefined)
               throw Error(
                 `Fetch News Return With Error => ${dataReceived["Error Message"]}`
@@ -50,7 +50,7 @@ const News = (props) => {
             // setIsPending(false);
             setErrorState(err.message);
           });
-      }, [props.symbol]);
+      }, [props.symbolParam]);
 
 
       if (errorState !== null) return <div>{errorState}</div>;
