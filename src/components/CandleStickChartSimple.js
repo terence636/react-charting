@@ -52,7 +52,7 @@ const CandleStickChartSimple = (props) => {
         // console.log("Error MSg =>", data["Error Message"])
         if (dataReceived["Error Message"] !== undefined)
           throw Error(
-            `Data return with error => ${dataReceived["Error Message"]}`
+            `Fetch data return with error => ${dataReceived["Error Message"]}`
           );
         console.log(dataReceived);
         const data = processData(dataReceived);
@@ -84,7 +84,9 @@ const CandleStickChartSimple = (props) => {
   }, [props.symbol]);
 
   
-  if (allData === null) return <div>Loading...</div>;
+  // {error && <div><hr />state err.message - {error}<hr /></div>}
+  if (error !== null) return <div><hr />Error - "{error}"<hr /></div>
+  if (allData === null) return <div>Loading...</div>
 
  
 
@@ -99,7 +101,7 @@ const CandleStickChartSimple = (props) => {
   return (
     <div className="candlechart">
       <h1><span className="symbolName">{symbolName}</span> </h1>
-      {error && <div><hr />state err.message - {error}<hr /></div>}
+      {/* {error && <div><hr />state err.message - {error}<hr /></div>} */}
       {/* <h6><span className="closePrice">${data[data.length-1].close}</span> Windows{width}</h6> */}
       <h6><span className="closePrice">${data[data.length-1].close}</span></h6>
       <hr />

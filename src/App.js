@@ -16,17 +16,18 @@ function App() {
     <Router>
     {/* <div className="App"> */}
     <div>
-      <Header setSymbol={setSymbol}/>
+      <Header symbol={symbol} setSymbol={setSymbol}/>
       <Switch>
         {/* <Route exact path ="/">
           <Home />
         </Route> */}
         {/* <Route path="/dashboard"> */}
-        <Route exact path="/" >
-          <DashBoard symbol={symbol} setSymbol={setSymbol}/>,
-        </Route>
+        
         <Route path="/news">
           <News symbol={symbol}/>
+        </Route>
+        <Route path="/" >
+          <DashBoard symbol={symbol} setSymbol={setSymbol}/>,
         </Route>
       </Switch>
     </div>

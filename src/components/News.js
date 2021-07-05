@@ -10,14 +10,16 @@ const News = (props) => {
 
     const baseURL = "https://financialmodelingprep.com/api/v3/";
     const functionType = "stock_news"; //"actives";
-    const symbol = "?tickers=AAPL" //`tickers=${props.symbol}`;
+    const symbol = `?tickers=${props.symbol}` //"?tickers=AAPL" //`tickers=${props.symbol}`;
     const limit = "&limit=5" //"BABA"; // PUT props.symbol here
     const apiKey = "&apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
     const URL = baseURL + functionType + symbol + limit + apiKey;
     // https://financialmodelingprep.com/api/v3/stock_news?tickers=AAPL,FB,GOOG,AMZN&limit=50&apikey=demo
 
-    console.log(props.symbol)
+    console.log("News Component =>",props.symbol)
+    console.log(URL)
     useEffect(() => {
+      console.log("inside new use effect")
         fetch(URL)
           .then((res) => {
             console.log(res);
@@ -44,7 +46,7 @@ const News = (props) => {
             // setIsPending(false);
             setErrorState(err.message);
           });
-      }, [props.selection]);
+      }, [props.symbol]);
 
 
       if (errorState !== null) return <div>{errorState}</div>;
