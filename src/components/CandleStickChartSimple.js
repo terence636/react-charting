@@ -20,7 +20,7 @@ const CandleStickChartSimple = (props) => {
   // https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=demo
   const baseURL = "https://financialmodelingprep.com/api/v3/";
   const functionType = "historical-price-full/";
-  const symbol = props.symbol //"BABA"; // PUT props.symbol here
+  const symbol = props.symbolParam //"BABA"; // PUT props.symbol here
   const apiKey = "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
   const URL = baseURL + functionType + symbol + apiKey;
   // const URL1 = 'https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=316ff3fb75ec7264440cd255a2cede4e'

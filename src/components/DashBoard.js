@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useParams } from "react-router-dom";
 // import '/Users/tchan/SEI-30/react-charting/node_modules/bootstrap/dist/css/bootstrap.min.css'
 import CandleStickChartSimple from "./CandleStickChartSimple";
 import Category from './Category.js'
@@ -47,7 +48,9 @@ const DashBoard = ({ symbol, setSymbol }) => {
       console.log(symbol)
       console.log(watchList)
     }
-
+  
+    let { symbolParam } = useParams();
+    console.log("Param is", symbolParam)
 
   return (
     <div className="container-fluid p-0">
@@ -67,12 +70,8 @@ const DashBoard = ({ symbol, setSymbol }) => {
             </div>
             
           </div>
-
-
-      
-          
           <div className="col-7 chart">
-            <CandleStickChartSimple className="candlechart" symbol={symbol}/>
+            <CandleStickChartSimple className="candlechart" symbol={symbol} symbolParam={symbolParam}/>
           </div>
       </div>
     </div>

@@ -23,10 +23,10 @@ function App() {
         </Route> */}
         {/* <Route path="/dashboard"> */}
         
-        <Route path="/news">
+        <Route path="/News/:symbolParam">
           <News symbol={symbol}/>
         </Route>
-        <Route path="/" >
+        <Route path="/Dashboard/:symbolParam" >
           <DashBoard symbol={symbol} setSymbol={setSymbol}/>,
         </Route>
       </Switch>

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useParams } from "react-router-dom";
 // import '/Users/tchan/SEI-30/react-charting/node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Card from './Card'
 
@@ -8,9 +9,12 @@ const News = (props) => {
     const [errorState, setErrorState] = useState(null)
     const [dataState, setDataState] = useState(null)
 
+    let { symbolParam } = useParams();
+    console.log("Param is", symbolParam)
+
     const baseURL = "https://financialmodelingprep.com/api/v3/";
     const functionType = "stock_news"; //"actives";
-    const symbol = `?tickers=${props.symbol}` //"?tickers=AAPL" //`tickers=${props.symbol}`;
+    const symbol = `?tickers=${symbolParam}` //"?tickers=AAPL" //`tickers=${props.symbol}`;
     const limit = "&limit=5" //"BABA"; // PUT props.symbol here
     const apiKey = "&apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
     const URL = baseURL + functionType + symbol + limit + apiKey;
