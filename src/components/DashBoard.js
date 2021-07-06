@@ -7,6 +7,9 @@ import CandleStickChartSimple from "./CandleStickChartSimple";
 import Category from './Category.js'
 import DashboardCol from './DashboardCol'
 import Watchlist from './Watchlist'
+import CandleStickChartStoch from './CandleStickChartStoch'
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box'
 
 // HERE WILL HAVE 3 COMPONENTS
 // 1. LEFT NAV BAR, 2. DASHBOARD, 3. CHARRTS
@@ -15,12 +18,12 @@ import Watchlist from './Watchlist'
 // const categoryList = ["ACTIVE","INDEX","TOP","WATCHLISTS"] 
 const catSelection = (state, action) => {
   switch(action){
-    case "ACTIVE":
+    case "MOST ACTIVES":
         console.log("actives")
         return "actives"
-    case "INDEX":
-        console.log("index")
-        return "index"
+    // case "INDEX":
+    //     console.log("index")
+    //     return "index"
     case "TOP GAINERS":
         console.log("gainers")
         return "gainers"
@@ -42,6 +45,15 @@ const DashBoard = ({ symbol, setSymbol }) => {
     
     const [category, dispatch] = React.useReducer(catSelection, "actives")
     const [watchlist, setWatchList] = useState([])
+    
+    // const useStyles = makeStyles((theme) => ({
+    //   root: {
+    //     '& > *': {
+    //       margin: theme.spacing(1),
+    //     },
+    //   },
+    // }));
+    // const classes = useStyles();
 
     const onAddWatchList = (stockObj) => {
       if(watchlist.every(s=>s.ticker !== stockObj.ticker))
@@ -65,22 +77,37 @@ const DashBoard = ({ symbol, setSymbol }) => {
       <div className="row">
           <div className="col-2 cat" >
             CATEGORY
-            <Category catSelection={dispatch}/>
+            {/* <div className={classes.root}> */}
+            <Box mt={1}>
+            <Category category={category} catSelection={dispatch}/>
+            {/* </div> */}
+            </Box>
           </div>
           
-          <div className="col-3">
-          <div className="row mainlist">
-            DASHBOARD
+          {/* <div className="col-3 dash">
+            {category !== "watchlist"?
+            (<div className="row"> 
+              DASHBOARD
             <DashboardCol category={category} watchlist={watchlist} setSymbol={setSymbol} onAddWatchList={onAddWatchList} />
-            </div>
-            <div className="row watchlist" >
+            </div>) :
+            (<div className="row watchlist" >
               WATCHLIST
             <Watchlist watchList={watchlist} setSymbol={setSymbol} onRemoveWatchList={onRemoveWatchList}/>
+            </div>) }
+          </div> */}
+           <div className="col-3 dash">
+            {category !== "watchlist" ?
+             ( 
+            <DashboardCol category={category} watchlist={watchlist} setSymbol={setSymbol} onAddWatchList={onAddWatchList} />
+             ):
+             ( 
+            <Watchlist watchList={watchlist} setSymbol={setSymbol} onRemoveWatchList={onRemoveWatchList}/>
+             )}
             </div>
-            
-          </div>
+
           <div className="col-7 chart">
-            <CandleStickChartSimple className="candlechart" symbol={symbol} symbolParam={symbolParam}/>
+            {/* <CandleStickChartSimple className="candlechart" symbol={symbol} symbolParam={symbolParam}/> */}
+            <CandleStickChartStoch className="candlechart" symbol={symbol} symbolParam={symbolParam}/>
           </div>
       </div>
     </div>

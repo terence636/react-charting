@@ -15,6 +15,10 @@ const Header = ({symbol, setSymbol}) => {
         inputRefSymbol.current.value = ''
    }
 
+   const handleAddToWatch = () => {
+
+   }
+
 //    window.addEventListener("keyup",(event)=> {
 //     //    console.log("keyup")
 //         if(event.keyCode === 13) { // DETECT ENTER PRESS
@@ -32,6 +36,8 @@ const Header = ({symbol, setSymbol}) => {
       <div className="nav-item">
           <input type="text" maxlength="5" placeholder="symbol" ref={inputRefSymbol}/>
           <button className="letsgo" onClick={handleLetsGo}>Let's Go...</button>
+          <button className="letsgo" onClick={handleAddToWatch}>Add To Watch</button>
+
       </div>
       
 

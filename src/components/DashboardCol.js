@@ -65,8 +65,8 @@ const DashboardCol = (props) => {
   })
 
   return (
-    <>
-      <div>({props.category})</div>
+    <div className="mainlist">
+      <div>({props.category.toUpperCase()})</div>
       <table>
         <thead>
           <tr>
@@ -85,7 +85,7 @@ const DashboardCol = (props) => {
           </tr> */}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

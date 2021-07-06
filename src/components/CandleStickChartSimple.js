@@ -6,6 +6,7 @@ import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
 import { last } from "react-stockcharts/lib/utils";
 import { XAxis, YAxis } from "react-stockcharts/lib/axes";
 import { BarSeries, CandlestickSeries } from "react-stockcharts/lib/series";
+import { HoverTooltip } from "react-stockcharts/lib/tooltip";
 
 // I NEED CHART TYPE AND DATA IN PROPS
 const CandleStickChartSimple = (props) => {
