@@ -20,7 +20,7 @@ const Watchlist = (props) => {
 
 
     return (
-      <div className="">
+      <div className="mainlist1">
       <div>WATCHLIST</div>
         <table>
         <thead>

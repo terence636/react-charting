@@ -1,8 +1,8 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 .App {
   font-family: sans-serif;
@@ -56,10 +56,16 @@ td {
   border-top: 1px solid black;
 }
 
-.symbolName {
-  color: #99cc00;
+.symbolChartH {
+  color: #0e00cc;
   font-weight: bold;
-  font-size: 1.0em;
+  /* font-size: 1.0em; */
+}
+
+.priceChartH {
+  color: #010105;
+  font-weight: bold;
+  font-size: 0.5em;
 }
 
 .closePrice {
@@ -75,7 +81,14 @@ td {
 .categoryButtons.selected {
   /* outline-color: transparent; */
   border: 2px solid #a16046 !important;
-  font-weight: 1000;
+  font-weight: bolder;
+  background-color: #d8b6a8;
+}
+
+.periodButtons.selected {
+  /* outline-color: transparent; */
+  border: 2px solid #a16046 !important;
+  font-weight: bold;
   background-color: #d8b6a8;
 }
 

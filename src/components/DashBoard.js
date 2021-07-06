@@ -8,8 +8,6 @@ import Category from './Category.js'
 import DashboardCol from './DashboardCol'
 import Watchlist from './Watchlist'
 import CandleStickChartStoch from './CandleStickChartStoch'
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box'
 
 // HERE WILL HAVE 3 COMPONENTS
 // 1. LEFT NAV BAR, 2. DASHBOARD, 3. CHARRTS
@@ -41,33 +39,24 @@ const catSelection = (state, action) => {
 
 
 
-const DashBoard = ({ symbol, setSymbol }) => {
+const DashBoard = ({ symbol, setSymbol, watchlist, onAddWatchList, onRemoveWatchList}) => {
     
     const [category, dispatch] = React.useReducer(catSelection, "actives")
-    const [watchlist, setWatchList] = useState([])
+    // const [watchlist, setWatchList] = useState([])
     
-    // const useStyles = makeStyles((theme) => ({
-    //   root: {
-    //     '& > *': {
-    //       margin: theme.spacing(1),
-    //     },
-    //   },
-    // }));
-    // const classes = useStyles();
+    // const onAddWatchList = (stockObj) => {
+    //   if(watchlist.every(s=>s.ticker !== stockObj.ticker))
+    //   // if(watchlist.includes(symbol) === false)
+    //     setWatchList(prev=>[...prev,stockObj])
+    //   console.log(stockObj)
+    //   console.log(watchlist)
+    // }
 
-    const onAddWatchList = (stockObj) => {
-      if(watchlist.every(s=>s.ticker !== stockObj.ticker))
-      // if(watchlist.includes(symbol) === false)
-        setWatchList(prev=>[...prev,stockObj])
-      console.log(stockObj)
-      console.log(watchlist)
-    }
-
-    const onRemoveWatchList = (symbol) => {
-      // const index = wathclist.findIndex(symbol)
-      const newlist = watchlist.filter((d)=>d.ticker !== symbol)
-        setWatchList(newlist)
-    }
+    // const onRemoveWatchList = (symbol) => {
+    //   // const index = wathclist.findIndex(symbol)
+    //   const newlist = watchlist.filter((d)=>d.ticker !== symbol)
+    //     setWatchList(newlist)
+    // }
   
     let { symbolParam } = useParams();
     console.log("Param is", symbolParam)
@@ -77,11 +66,7 @@ const DashBoard = ({ symbol, setSymbol }) => {
       <div className="row">
           <div className="col-2 cat" >
             CATEGORY
-            {/* <div className={classes.root}> */}
-            <Box mt={1}>
             <Category category={category} catSelection={dispatch}/>
-            {/* </div> */}
-            </Box>
           </div>
           
           {/* <div className="col-3 dash">

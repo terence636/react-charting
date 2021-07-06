@@ -37,10 +37,11 @@ const stoAppearance = {
 const CandleStickChartStoch = (props) => {
   // State
   const [error, setError] = useState(null);
-  const [isPending, setIsPending] = useState(false);
+  // const [isPending, setIsPending] = useState(false);
   const [allData, setAllData] = useState(null);
   const [symbolName, setSymbolName] = useState("")
   const [width, setWidth] = useState(window.innerWidth)
+  const [period, setPeriod] = useState('d')
 
   // Below are for financial modelling grep
   // https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=demo
@@ -105,7 +106,7 @@ const CandleStickChartStoch = (props) => {
         return res.json();
       })
       .then((dataReceived) => {
-        setIsPending(false);
+        // setIsPending(false);
   
         if (dataReceived["Error Message"] !== undefined)
           throw Error(
@@ -122,13 +123,11 @@ const CandleStickChartStoch = (props) => {
         // HERE IS TO CATCH NETWORK ERROR
         // console.log("Network Err =>", err.message)
         // console.log("Fail to Fecth =>", err.message)
-        setIsPending(false);
+        // setIsPending(false);
         setError(err.message);
       });
   }, [props.symbolParam]);
 
-  
-  // {error && <div><hr />state err.message - {error}<hr /></div>}
   if (error !== null) return <div><hr />Error - "{error}"<hr /></div>
   if (allData === null) return <div>Loading...</div>
 
@@ -143,15 +142,15 @@ const CandleStickChartStoch = (props) => {
 
   return (
     <div className="candlechart">
-      <h1><span className="symbolName">{symbolName}</span> </h1>
-      {/* {error && <div><hr />state err.message - {error}<hr /></div>} */}
-      {/* <h6><span className="closePrice">${data[data.length-1].close}</span> Windows{width}</h6> */}
-      <span className="closePrice">${data[data.length-1].close}</span>
-      {/* <hr /> */}
+      <h2 className="symbolChartH">{symbolName}<span className="priceChartH"> ${data[data.length-1].close}</span></h2>
+      {/* className={`categoryButtons ${cat.includes(props.category.toUpperCase())? "selected":""}`} */}
+      <button className={`periodButtons ${period==='d'?"selected":""}`} onClick={()=>setPeriod('d')}>d</button>
+      <button className={`periodButtons ${period==='w'?"selected":""}`} onClick={()=>setPeriod('w')}>w</button>
+      <button className={`periodButtons ${period==='m'?"selected":""}`} onClick={()=>setPeriod('m')}>m</button>
       <ChartCanvas
         height={height}
         ratio={1.25}
-        width={780}
+        width={800}
         margin={margin}
         type="svg"
         seriesName={symbolName}
@@ -248,11 +247,6 @@ const CandleStickChartStoch = (props) => {
 						appearance={stoAppearance}
 						label="Full STO" />
 				</Chart>
-        {/* <Chart id={3} origin={(w, h) => [0, h - 200]} height={100} yExtents={d => d.volume}>
-					<XAxis axisAt="bottom" orient="bottom"/>
-					<YAxis axisAt="left" orient="left" ticks={5} tickFormat={format(".2s")}/>
-					<BarSeries yAccessor={d => d.volume} fill={(d) => d.close > d.open ? "#6BA583" : "red"} />
-				</Chart> */}
       <CrossHairCursor />
       </ChartCanvas>
     </div>

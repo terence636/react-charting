@@ -65,7 +65,7 @@ const DashboardCol = (props) => {
   })
 
   return (
-    <div className="mainlist">
+    <div className="mainlist1">
       <div>({props.category.toUpperCase()})</div>
       <table>
         <thead>
@@ -75,14 +75,8 @@ const DashboardCol = (props) => {
             <th>Change</th>
           </tr>
         </thead>
-        <tbody>
-            
+        <tbody>           
             {stockList}
-          {/* <tr>
-            <td>AAPL</td>
-            <td>$131.45</td>
-            <td>+$1.23</td>
-          </tr> */}
         </tbody>
       </table>
     </div>
