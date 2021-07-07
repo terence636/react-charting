@@ -20,6 +20,7 @@ const ModalVerticallyCentered = (props) => {
       
       <p><b>Market Cap:</b> {Format(props.data.mktCap)}</p>
       <p><b>Website:</b><a href={props.data.website}>{props.data.website}</a></p>
+      <p><b>Industry:</b>{props.data.industry}</p>
       <p><b>Description:</b></p>
       <p>{props.data.description}</p>
     </Modal.Body>

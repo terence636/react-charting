@@ -14,10 +14,10 @@ const News = (props) => {
 
     const baseURL = "https://financialmodelingprep.com/api/v3/";
     const functionType = "stock_news"; //"actives";
-    const symbol = `?tickers=${symbolParam}` //"?tickers=AAPL" //`tickers=${props.symbol}`;
+    const symbolName = `?tickers=${symbolParam}` //"?tickers=AAPL" //`tickers=${props.symbol}`;
     const limit = "&limit=5" //"BABA"; // PUT props.symbol here
     const apiKey = "&apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
-    const URL = baseURL + functionType + symbol + limit + apiKey;
+    const URL = baseURL + functionType + symbolName + limit + apiKey;
     // https://financialmodelingprep.com/api/v3/stock_news?tickers=AAPL,FB,GOOG,AMZN&limit=50&apikey=demo
 
     console.log("News Component =>",props.symbol)
@@ -50,7 +50,7 @@ const News = (props) => {
             // setIsPending(false);
             setErrorState(err.message);
           });
-      }, [props.symbolParam]);
+      }, [symbolParam]);
 
 
       if (errorState !== null) return <div>{errorState}</div>;
@@ -73,14 +73,6 @@ const News = (props) => {
     return (
         <div className="newsContainer">
             {newsList}
-          {/* <div className="card" style={{width: "18rem"}}>
-          <img src="https://cdn.snapi.dev/images/v1/5/5/556ygt-886387." className="card-img-top" alt="TESTING-IMAGE" />  
-          <div className="card-body">
-              <h5 className="card-title">"Apple Working on Larger iPads, New Watches"</h5>
-              <p className="card-text">Jun.28 -- On this week's "Bloomberg Technology: Power On," Mark Gurman explains how Apple plans to update the iPad and Apple Watch, Apple's revamp of its car team, Amazon's Kindle update, and Peloton's first wearable device."</p>
-              <a href="https://www.youtube.com/watch?v=BE8qbCFvRhA" className="btn btn-primary">Details...</a>
-          </div> */}
-     
         </div>
     )
 }

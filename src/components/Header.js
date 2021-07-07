@@ -9,7 +9,7 @@ const Header = ({ symbol, setSymbol, onAddWatchList }) => {
   let history = useHistory();
 
   const handleLetsGo = () => {
-    console.log(inputRefSymbol.current.value);
+    console.log("Handle Lets Go",inputRefSymbol.current.value);
     history.push(inputRefSymbol.current.value.toUpperCase());
     setSymbol(inputRefSymbol.current.value.toUpperCase());
     inputRefSymbol.current.value = "";
@@ -88,6 +88,7 @@ const Header = ({ symbol, setSymbol, onAddWatchList }) => {
         <button className="letsgo" onClick={handleAddToWatch}>
           Add To Watch
         </button>
+        <div>Version 7.7</div>
       </div>
     </div>
   );

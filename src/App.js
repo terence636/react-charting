@@ -37,7 +37,7 @@ function App() {
         <Redirect to={`/Dashboard/${symbol}`} />
         </Route>
         <Route path="/News/:symbolParam">
-          <News symbol={symbol}/>
+          <News /*symbol={symbol}*//>
         </Route>
         <Route path="/Dashboard/:symbolParam" >
           <DashBoard symbol={symbol} setSymbol={setSymbol} watchlist={watchlist} onAddWatchList={onAddWatchList} onRemoveWatchList={onRemoveWatchList}/>,
