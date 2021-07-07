@@ -1,7 +1,12 @@
 // import './App.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import React, {useState} from 'react'
+import React, {useState, useEffect } from 'react'
+import firebase from "firebase/app";
+import "firebase/firestore";
+import "firebase/database";
+import firebaseConfig from './firebaseConfig'
+
 
 // BELOW ARE ALL COMPONENTS
 import Header from './components/Header'
@@ -12,6 +17,47 @@ import News from './components/News'
 function App() {
   const [symbol, setSymbol] = useState("AAPL")
   const [watchlist, setWatchList] = useState([])
+  
+
+  useEffect(()=> {
+
+    firebase.initializeApp(firebaseConfig);
+    firebase.database().ref('watchlist/').once('value').then((snapshot) => {
+      if (snapshot.exists()) {
+            // console.log("snapshot",snapshot.val());
+            const symbolList=snapshot.val()
+            console.log("firebasedb", symbolList)
+            let initWatchlit = []
+            for(let ticker of snapshot.val()) {
+              const temp = {ticker, price: "", changePercentage:""}
+              initWatchlit.push(temp)
+            }
+            
+            setWatchList(initWatchlit)
+          } else {
+            console.log("No data available");
+          }
+        }).catch((error) => {
+          console.error(error);
+        })
+  },[])
+ 
+
+  // // Get a reference to the database service
+  // const database = firebase.database();
+  // console.log("firebase DB", database)
+
+ 
+// dbRef.child("users").child("userId").get().then((snapshot) => {
+//   if (snapshot.exists()) {
+//     console.log("snapshot",snapshot.val());
+//   } else {
+//     console.log("No data available");
+//   }
+// }).catch((error) => {
+//   console.error(error);
+// });
+
 
    const onAddWatchList = (stockObj) => {
       if(watchlist.every(s=>s.ticker !== stockObj.ticker))

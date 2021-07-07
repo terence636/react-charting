@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useParams } from "react-router-dom";
-// import '/Users/tchan/SEI-30/react-charting/node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { Container, Row, Col } from "react-bootstrap"
 import CandleStickChartSimple from "./CandleStickChartSimple";
 import Category from './Category.js'
 import DashboardCol from './DashboardCol'
@@ -19,9 +19,6 @@ const catSelection = (state, action) => {
     case "30 MOST ACTIVES":
         console.log("actives")
         return "actives"
-    // case "INDEX":
-    //     console.log("index")
-    //     return "index"
     case "30 TOP GAINERS":
         console.log("gainers")
         return "gainers"
@@ -62,24 +59,13 @@ const DashBoard = ({ symbol, setSymbol, watchlist, onAddWatchList, onRemoveWatch
     console.log("Param is", symbolParam)
 
   return (
-    <div className="container-fluid p-0">
+    <>
+    {/* <div className="container-fluid p-0">
       <div className="row">
           <div className="col-2 cat" >
             CATEGORY
             <Category category={category} catSelection={dispatch}/>
           </div>
-          
-          {/* <div className="col-3 dash">
-            {category !== "watchlist"?
-            (<div className="row"> 
-              DASHBOARD
-            <DashboardCol category={category} watchlist={watchlist} setSymbol={setSymbol} onAddWatchList={onAddWatchList} />
-            </div>) :
-            (<div className="row watchlist" >
-              WATCHLIST
-            <Watchlist watchList={watchlist} setSymbol={setSymbol} onRemoveWatchList={onRemoveWatchList}/>
-            </div>) }
-          </div> */}
            <div className="col-3 dash">
             {category !== "watchlist" ?
              ( 
@@ -89,14 +75,34 @@ const DashBoard = ({ symbol, setSymbol, watchlist, onAddWatchList, onRemoveWatch
             <Watchlist watchList={watchlist} setSymbol={setSymbol} onRemoveWatchList={onRemoveWatchList}/>
              )}
             </div>
-
           <div className="col-7 chart">
-            {/* <CandleStickChartSimple className="candlechart" symbol={symbol} symbolParam={symbolParam}/> */}
             <CandleStickChartStoch className="candlechart" symbol={symbol} symbolParam={symbolParam}/>
           </div>
       </div>
-    </div>
-    // ADD ANOTHER COLUMN FOR STOCK DETAILS. BELOW THE CHART
+    </div> */}
+    <Container fluid>
+      <Row>
+              <Col xs={6} xl={2} className="cat">
+                CATEGORY
+                <Category category={category} catSelection={dispatch}/>
+              </Col>
+              <Col xs={6} xl={3} className="dash">
+              {category !== "watchlist" ?
+             ( 
+            <DashboardCol category={category} watchlist={watchlist} setSymbol={setSymbol} onAddWatchList={onAddWatchList} />
+             ):
+             ( 
+            <Watchlist watchList={watchlist} setSymbol={setSymbol} onRemoveWatchList={onRemoveWatchList}/>
+             )}
+
+              </Col>
+              <Col xs= {12} xl={7} className="chart">
+              <CandleStickChartStoch className="candlechart" symbol={symbol} symbolParam={symbolParam}/>
+              </Col>
+      </Row>
+
+    </Container> 
+    </>
   );
 };
 
