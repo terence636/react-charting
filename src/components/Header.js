@@ -88,11 +88,14 @@ const Header = ({ symbol, setSymbol, onAddWatchList }) => {
         <button className="letsgo" onClick={handleAddToWatch}>
           Add To Watch
         </button>
-        <div>Version 7.7</div>
+      </div>
+      <div className="nav-item">
+        Version 7.7
       </div>
     </div>
   );
 };
+
 
 Header.propTypes = {
   setSymbol: PropTypes.func.isRequired,
