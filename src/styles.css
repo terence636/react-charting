@@ -155,27 +155,28 @@ td {
   /* height: 50%; */
   /* position: absolute; */
   /* margin: 10px; */
+  text-align: center;
   overflow-y: scroll;
   background-color: rgb(196, 219, 240);
   
  
 }
 
-.watchlist::-webkit-scrollbar-track {
+/* .watchlist::-webkit-scrollbar-track { */
   /* -webkit-box-shadow: inset 0 0 6px grey; */
-  border-radius: 10px;
-  background-color: rgb(254, 255, 254);
+  /* border-radius: 10px; */
+  /* background-color: rgb(254, 255, 254); */
 
-}
+/* } */
 
-.watchlist::-webkit-scrollbar {
+/* .watchlist::-webkit-scrollbar {
   width:12px;
   background-color: rgb(144, 151, 144);
-}
+} */
 
-.watchlist::-webkit-scrollbar-thumb {
-  border-radius: 10px;
+/* .watchlist::-webkit-scrollbar-thumb { */
+  /* border-radius: 10px; */
   /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
-  background-color: rgb(121, 120, 120);
+  /* background-color: rgb(121, 120, 120); */
 
-}
+/* } */

@@ -16,16 +16,16 @@ import CandleStickChartStoch from './CandleStickChartStoch'
 // const categoryList = ["ACTIVE","INDEX","TOP","WATCHLISTS"] 
 const catSelection = (state, action) => {
   switch(action){
-    case "MOST ACTIVES":
+    case "30 MOST ACTIVES":
         console.log("actives")
         return "actives"
     // case "INDEX":
     //     console.log("index")
     //     return "index"
-    case "TOP GAINERS":
+    case "30 TOP GAINERS":
         console.log("gainers")
         return "gainers"
-    case "TOP LOSERS":
+    case "30 TOP LOSERS":
         console.log("losers")
         return "losers"
     case "WATCHLISTS":
@@ -105,3 +105,4 @@ DashBoard.propTypes = {
 };
 
 export default DashBoard;
+

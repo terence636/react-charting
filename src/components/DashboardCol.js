@@ -39,7 +39,12 @@ const DashboardCol = (props) => {
           throw Error(
             `Dashboard Column data return with error => ${dataReceived["Error Message"]}`
           );
-        console.log(dataReceived);
+        
+        for(let stock of dataReceived) {
+          const index = stock.changesPercentage.indexOf('%')
+          stock.changesPercentage = stock.changesPercentage.slice(1,index)
+        }
+        console.log("DashboardCol=>",dataReceived);
         // const data = processData(dataReceived);
         setDataState(dataReceived);
         setErrorState(null)
@@ -57,6 +62,7 @@ const DashboardCol = (props) => {
 
   // FROM DATA RECEIVED ITERATE THE lIST USING MAP
   const stockList = dataState.map((stock,index)=>{
+    // const newChange = stock.changesPercentage.slice(1,6)
     return <DashboardRow key={index} symbol={stock.ticker} price={stock.price} change={stock.changesPercentage} 
         setSymbol={props.setSymbol}
         isAdded={props.watchlist.some((s)=>s.ticker===stock.ticker)}
@@ -72,7 +78,7 @@ const DashboardCol = (props) => {
           <tr>
             <th>Symbol</th>
             <th>Price</th>
-            <th>Change</th>
+            <th>Change(%)</th>
           </tr>
         </thead>
         <tbody>           

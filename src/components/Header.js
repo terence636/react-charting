@@ -16,7 +16,7 @@ const Header = ({ symbol, setSymbol, onAddWatchList }) => {
   };
 
   const handleAddToWatch = () => {
-    console.log("add");
+    // console.log("add");
     if (inputRefSymbol.current.value === "") return;
     //Fectch symbol data and add to watchlist
     const baseURL = "https://financialmodelingprep.com/api/v3/";
@@ -42,7 +42,9 @@ const Header = ({ symbol, setSymbol, onAddWatchList }) => {
             `Dashboard Column data return with error => ${dataReceived["Error Message"]}`
           );
         dataReceived[0].ticker = dataReceived[0].symbol;
-        console.log(dataReceived[0]);
+        dataReceived[0].changesPercentage = (Math.sign(parseInt(dataReceived[0].changesPercentage)) === 1) ? 
+                                            `+${dataReceived[0].changesPercentage}` : dataReceived[0].changesPercentage
+        console.log("Header Add Watch =>", dataReceived[0]);
         inputRefSymbol.current.value = "";
         onAddWatchList(dataReceived[0]);
       })
