@@ -87,13 +87,18 @@ const Header = ({ symbol, setSymbol, onAddWatchList }) => {
           placeholder="symbol"
           ref={inputRefSymbol}
         />
+      </div>
+      <div>
         <button className="letsgo" onClick={handleLetsGo}>
           Let's Go...
         </button>
+      </div>
+      <div>
         <button className="letsgo" onClick={handleAddToWatch}>
           Add To Watch
         </button>
       </div>
+      {/* </div> */}
       <div className="nav-item">
         Version 7.7
       </div>

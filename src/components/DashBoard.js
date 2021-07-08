@@ -59,34 +59,14 @@ const DashBoard = ({ symbol, setSymbol, watchlist, onAddWatchList, onRemoveWatch
     console.log("Param is", symbolParam)
 
   return (
-    <>
-    {/* <div className="container-fluid p-0">
-      <div className="row">
-          <div className="col-2 cat" >
-            CATEGORY
-            <Category category={category} catSelection={dispatch}/>
-          </div>
-           <div className="col-3 dash">
-            {category !== "watchlist" ?
-             ( 
-            <DashboardCol category={category} watchlist={watchlist} setSymbol={setSymbol} onAddWatchList={onAddWatchList} />
-             ):
-             ( 
-            <Watchlist watchList={watchlist} setSymbol={setSymbol} onRemoveWatchList={onRemoveWatchList}/>
-             )}
-            </div>
-          <div className="col-7 chart">
-            <CandleStickChartStoch className="candlechart" symbol={symbol} symbolParam={symbolParam}/>
-          </div>
-      </div>
-    </div> */}
+  
     <Container fluid>
       <Row>
-              <Col xs={6} xl={2} className="cat">
+              <Col md={6} xl={2} className="cat">
                 CATEGORY
                 <Category category={category} catSelection={dispatch}/>
               </Col>
-              <Col xs={6} xl={3} className="dash">
+              <Col md={6} xl={3} className="dash">
               {category !== "watchlist" ?
              ( 
             <DashboardCol category={category} watchlist={watchlist} setSymbol={setSymbol} onAddWatchList={onAddWatchList} />
@@ -96,13 +76,12 @@ const DashBoard = ({ symbol, setSymbol, watchlist, onAddWatchList, onRemoveWatch
              )}
 
               </Col>
-              <Col xs= {12} xl={7} className="chart">
+              <Col md= {12} xl={7} className="chart">
               <CandleStickChartStoch className="candlechart" symbol={symbol} symbolParam={symbolParam}/>
               </Col>
       </Row>
 
     </Container> 
-    </>
   );
 };
 

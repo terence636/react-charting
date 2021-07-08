@@ -180,3 +180,16 @@ td {
   /* background-color: rgb(121, 120, 120); */
 
 /* } */
+
+@media only screen and (max-width: 768px) {
+  /*for mobile phones */
+  /*Below not applicable as im using React Bootstrap grid */
+  [class*="col-"] {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+ 
+  
+}

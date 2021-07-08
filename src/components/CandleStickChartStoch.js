@@ -40,7 +40,7 @@ const CandleStickChartStoch = (props) => {
   // const [isPending, setIsPending] = useState(false);
   const [allData, setAllData] = useState(null);
   const [symbolName, setSymbolName] = useState("")
-  const [width, setWidth] = useState(window.innerWidth)
+  const [windowWidth, setWidth] = useState(window.innerWidth)
   const [period, setPeriod] = useState('d')
 
   // Below are for financial modelling grep
@@ -53,15 +53,27 @@ const CandleStickChartStoch = (props) => {
   // const URL1 = 'https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=316ff3fb75ec7264440cd255a2cede4e'
   console.log("apiKey", apiKey);
 
+  // let chartWidth;
+  let chartWidth = windowWidth-600
+  if(windowWidth < 1200)
+    chartWidth = windowWidth
+  else if(windowWidth < 1350)
+    chartWidth = windowWidth-550
+  else if(windowWidth < 1300)
+    chartWidth = windowWidth-500
+  
+  // else 
+  //   if(windowWidth < 1400)
+  //   chartWidth = windowWidth-570//1100
+ 
   const updateDimensions = () => {
-    const width = window.innerWidth -200
-    setWidth(width)
+    setWidth(window.innerWidth)
   }
 
   const height = 750;
   const margin = { left: 70, right: 70, top: 20, bottom: 30 };
   const gridHeight = height - margin.top - margin.bottom;
-  const gridWidth = width - margin.left - margin.right;
+  const gridWidth = chartWidth - margin.left - margin.right;
 
   const showGrid = true;
   const yGrid = showGrid ? { innerTickSize: -1 * gridWidth, tickStrokeOpacity: 0.1 } : {};
@@ -93,8 +105,8 @@ const CandleStickChartStoch = (props) => {
 
   useEffect(() => {
 
-    // updateDimensions()
-    // window.addEventListener("resize", updateDimensions)
+    updateDimensions()
+    window.addEventListener("resize", updateDimensions)
 
     fetch(URL)
       .then((res) => {
@@ -142,7 +154,7 @@ const CandleStickChartStoch = (props) => {
 
   return (
     <div className="candlechart">
-      <h2 className="symbolChartH">{symbolName}<span className="priceChartH"> ${data[data.length-1].close}</span></h2>
+      <h2 className="symbolChartH">{symbolName}<span className="priceChartH"> ${data[data.length-1].close} {windowWidth}</span></h2>
       {/* className={`categoryButtons ${cat.includes(props.category.toUpperCase())? "selected":""}`} */}
       <button className={`periodButtons ${period==='d'?"selected":""}`} onClick={()=>setPeriod('d')}>d</button>
       <button className={`periodButtons ${period==='w'?"selected":""}`} onClick={()=>setPeriod('w')}>w</button>
@@ -150,7 +162,7 @@ const CandleStickChartStoch = (props) => {
       <ChartCanvas
         height={height}
         ratio={1.25}
-        width={800}
+        width={chartWidth}
         margin={margin}
         type="svg"
         seriesName={symbolName}

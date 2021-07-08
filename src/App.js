@@ -70,27 +70,12 @@ function App() {
   },[])
  
 
-  // // Get a reference to the database service
-  // const database = firebase.database();
-  // console.log("firebase DB", database)
-
- 
-// dbRef.child("users").child("userId").get().then((snapshot) => {
-//   if (snapshot.exists()) {
-//     console.log("snapshot",snapshot.val());
-//   } else {
-//     console.log("No data available");
-//   }
-// }).catch((error) => {
-//   console.error(error);
-// });
-
-
    const onAddWatchList = (stockObj) => {
       if(watchlist.every(s=>s.ticker !== stockObj.ticker)) {
       // if(watchlist.includes(symbol) === false)
         setWatchList(prev=>[...prev,stockObj])
         //WRITE TO FIREBASE DB
+        // firebase.initializeApp(firebaseConfig);
         firebase.database().ref('watchlist/').set(
           [...watchlist, stockObj]      
         )
@@ -101,8 +86,10 @@ function App() {
 
     const onRemoveWatchList = (symbol) => {
       // const index = wathclist.findIndex(symbol)
-      const newlist = watchlist.filter((d)=>d.ticker !== symbol)
+      const newlist = watchlist.filter((d)=>d.ticker !== symbol) 
         setWatchList(newlist)
+        // firebase.initializeApp(firebaseConfig);
+        firebase.database().ref('watchlist/').set(newlist)  
     }
 
   return (
