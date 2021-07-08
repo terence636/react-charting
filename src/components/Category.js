@@ -4,7 +4,7 @@ import React from "react";
 
 
 const Category = (props) => {
-  const categoryList = ["30 MOST ACTIVES", "30 TOP GAINERS", "30 TOP LOSERS", "WATCHLISTS"];
+  const categoryList = ["MOST ACTIVES", "30 TOP GAINERS", "30 TOP LOSERS", "WATCHLISTS"];
 
   // <div className={`film-row-fave ${!props.isAdded? "add_to_queue" : "remove_from_queue"}`}
   const categoryButtons = categoryList.map((cat, index) => {

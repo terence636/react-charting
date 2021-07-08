@@ -12,7 +12,7 @@ const ModalVerticallyCentered = (props) => {
   >
     <Modal.Header closeButton>
       <Modal.Title id="contained-modal-title-vcenter">
-      <img src={props.data.image} />
+      <img src={props.data.image} alt={props.data.companyName} />
       {props.data.companyName}
       </Modal.Title>
     </Modal.Header>

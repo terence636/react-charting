@@ -1,10 +1,10 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
-import { IconButton } from "@material-ui/core";
-import firebase from "firebase/app";
+// import { IconButton } from "@material-ui/core";
+// import firebase from "firebase/app";
 import "firebase/database";
-import firebaseConfig from '../firebaseConfig.js'
+// import firebaseConfig from '../firebaseConfig.js'
 // import {AddToQueue, RemoveFromQueue} from "@material-ui/icons"
 
 const Header = ({ symbol, setSymbol, onAddWatchList }) => {

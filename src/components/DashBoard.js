@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap"
-import CandleStickChartSimple from "./CandleStickChartSimple";
+// import CandleStickChartSimple from "./CandleStickChartSimple";
 import Category from './Category.js'
 import DashboardCol from './DashboardCol'
 import Watchlist from './Watchlist'
@@ -16,7 +16,7 @@ import CandleStickChartStoch from './CandleStickChartStoch'
 // const categoryList = ["ACTIVE","INDEX","TOP","WATCHLISTS"] 
 const catSelection = (state, action) => {
   switch(action){
-    case "30 MOST ACTIVES":
+    case "MOST ACTIVES":
         console.log("actives")
         return "actives"
     case "30 TOP GAINERS":
@@ -63,7 +63,7 @@ const DashBoard = ({ symbol, setSymbol, watchlist, onAddWatchList, onRemoveWatch
     <Container fluid>
       <Row>
               <Col md={6} xl={2} className="cat">
-                CATEGORY
+                <h6>CATEGORY</h6>
                 <Category category={category} catSelection={dispatch}/>
               </Col>
               <Col md={6} xl={3} className="dash">

@@ -112,7 +112,7 @@ td {
 }
 
 .letsgo {
-  margin: 10px;
+  /* margin: 1px; */
   padding: 0 20px;
 }
 
@@ -124,6 +124,20 @@ td {
   margin: 10px;
 }
 
+.scrollable {
+  height: 90vh;
+  overflow-y: scroll;
+  text-align: center;
+}
+
+.waitingImg {
+  width: 50vw;
+  height: 70vh;
+  margin: 20px;
+}
+
+
+/* 
 .mainlist {
   height: 110vh;
   overflow-y: scroll;
@@ -149,37 +163,7 @@ td {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
   background-color: rgb(121, 120, 120);
 
-}
-
-.watchlist {
-  /* height: 50%; */
-  /* position: absolute; */
-  /* margin: 10px; */
-  text-align: center;
-  overflow-y: scroll;
-  background-color: rgb(196, 219, 240);
-  
- 
-}
-
-/* .watchlist::-webkit-scrollbar-track { */
-  /* -webkit-box-shadow: inset 0 0 6px grey; */
-  /* border-radius: 10px; */
-  /* background-color: rgb(254, 255, 254); */
-
-/* } */
-
-/* .watchlist::-webkit-scrollbar {
-  width:12px;
-  background-color: rgb(144, 151, 144);
 } */
-
-/* .watchlist::-webkit-scrollbar-thumb { */
-  /* border-radius: 10px; */
-  /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
-  /* background-color: rgb(121, 120, 120); */
-
-/* } */
 
 @media only screen and (max-width: 768px) {
   /*for mobile phones */
@@ -189,7 +173,13 @@ td {
   }
 }
 
-@media only screen and (max-width: 576px) {
- 
-  
+@media only screen and (max-width: 850px) {
+  .nav {
+  display: flex;
+  flex-wrap: wrap;
+  /* align-items: center; */
+  /* width: 100vw; */
+  height: 120px;
+  /* padding: 0 20px; */
+  }
 }

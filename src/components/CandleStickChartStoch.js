@@ -27,6 +27,9 @@ import {
 } from "react-stockcharts/lib/tooltip";
 import { ema, stochasticOscillator } from "react-stockcharts/lib/indicator";
 import { HoverTooltip } from "react-stockcharts/lib/tooltip";
+import { getSingleStockHistoricalUrl, getWeeklyStockQuoteUrlFromVantage } from '../utils'
+import waiting from '../waiting.jpeg'
+
 
 const stoAppearance = {
 	stroke: Object.assign({},
@@ -37,23 +40,31 @@ const stoAppearance = {
 const CandleStickChartStoch = (props) => {
   // State
   const [error, setError] = useState(null);
-  // const [isPending, setIsPending] = useState(false);
   const [allData, setAllData] = useState(null);
   const [symbolName, setSymbolName] = useState("")
   const [windowWidth, setWidth] = useState(window.innerWidth)
   const [period, setPeriod] = useState('d')
+  const [isPending, setIsPending] = useState(false)
 
   // Below are for financial modelling grep
   // https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=demo
-  const baseURL = "https://financialmodelingprep.com/api/v3/";
-  const functionType = "historical-price-full/";
-  const symbol = props.symbolParam //"BABA"; // PUT props.symbol here
-  const apiKey = "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
-  const URL = baseURL + functionType + symbol + apiKey;
+  // const URL = getWeeklyStockQuoteUrlFromVantage(props.symbolParam)
+  
+  let URL
+  if(period === 'd')
+    URL = getSingleStockHistoricalUrl(props.symbolParam)
+  else if(period === 'w')
+    URL = getWeeklyStockQuoteUrlFromVantage(props.symbolParam)
+  // URL = "https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=BABA&apikey=XW0YLMZBBXDYRUEK"
+  // console.log("URL vantage=>",URL)
+  // const baseURL = "https://financialmodelingprep.com/api/v3/";
+  // const functionType = "historical-price-full/";
+  // const symbol = props.symbolParam //"BABA"; // PUT props.symbol here
+  // const apiKey = "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
+  // const URL = baseURL + functionType + symbol + apiKey;
   // const URL1 = 'https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=316ff3fb75ec7264440cd255a2cede4e'
-  console.log("apiKey", apiKey);
+  // console.log("apiKey", apiKey);
 
-  // let chartWidth;
   let chartWidth = windowWidth-600
   if(windowWidth < 1200)
     chartWidth = windowWidth
@@ -62,16 +73,13 @@ const CandleStickChartStoch = (props) => {
   else if(windowWidth < 1300)
     chartWidth = windowWidth-500
   
-  // else 
-  //   if(windowWidth < 1400)
-  //   chartWidth = windowWidth-570//1100
  
   const updateDimensions = () => {
     setWidth(window.innerWidth)
   }
 
-  const height = 750;
-  const margin = { left: 70, right: 70, top: 20, bottom: 30 };
+  const height = 560//750;
+  const margin = { left: 70, right: 70, top: 20, bottom: 0 };
   const gridHeight = height - margin.top - margin.bottom;
   const gridWidth = chartWidth - margin.left - margin.right;
 
@@ -90,27 +98,30 @@ const CandleStickChartStoch = (props) => {
 			.options({ windowSize: 50 })
 			.merge((d, c) => {d.ema50 = c;})
 			.accessor(d => d.ema50);
-    const slowSTO = stochasticOscillator()
-			.options({ windowSize: 14, kWindowSize: 3 })
-			.merge((d, c) => {d.slowSTO = c;})
-			.accessor(d => d.slowSTO);
-		const fastSTO = stochasticOscillator()
-			.options({ windowSize: 14, kWindowSize: 1 })
-			.merge((d, c) => {d.fastSTO = c;})
-			.accessor(d => d.fastSTO);
+    // const slowSTO = stochasticOscillator()
+		// 	.options({ windowSize: 14, kWindowSize: 3 })
+		// 	.merge((d, c) => {d.slowSTO = c;})
+		// 	.accessor(d => d.slowSTO);
+		// const fastSTO = stochasticOscillator()
+		// 	.options({ windowSize: 14, kWindowSize: 1 })
+		// 	.merge((d, c) => {d.fastSTO = c;})
+		// 	.accessor(d => d.fastSTO);
     const fullSTO = stochasticOscillator()
 			.options({ windowSize: 14, kWindowSize: 3, dWindowSize: 4 })
 			.merge((d, c) => {d.fullSTO = c;})
 			.accessor(d => d.fullSTO);
 
-  useEffect(() => {
-
+  useEffect(()=>{
     updateDimensions()
     window.addEventListener("resize", updateDimensions)
+  },[])
 
+  useEffect(() => {
+    setIsPending(true)
+    // console.log("in useeffect")
     fetch(URL)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (!res.ok) {
           // TO HANDLE RESPONSE ERROR
           throw Error("Could not fetch data for that resource");
@@ -124,26 +135,34 @@ const CandleStickChartStoch = (props) => {
           throw Error(
             `Fetch data return with error => ${dataReceived["Error Message"]}`
           );
-        console.log(dataReceived);
-        const data = processData(dataReceived);
+        // console.log(dataReceived);
+        let data;
+        if(period === 'd') {
+          data = processFmData(dataReceived);
+          setSymbolName(dataReceived.symbol)
+        }
+        else if(period === 'w') {
+          data = processWeeklyVantageData(dataReceived)
+          setSymbolName(dataReceived["Meta Data"]["2. Symbol"])
+        }
         setAllData(data);
-        setSymbolName(dataReceived.symbol)
+        
         setError(null)
         console.log("allData =>", data);
+        setIsPending(false)
       })
       .catch((err) => {
-        // HERE IS TO CATCH NETWORK ERROR
-        // console.log("Network Err =>", err.message)
-        // console.log("Fail to Fecth =>", err.message)
-        // setIsPending(false);
         setError(err.message);
       });
-  }, [props.symbolParam]);
+  }, [props.symbolParam,period]);
 
+  // if(period === 'w')
+  //   return <>{period}</>
   if (error !== null) return <div><hr />Error - "{error}"<hr /></div>
   if (allData === null) return <div>Loading...</div>
 
-  const calculatedData = ema20(ema50(slowSTO(fastSTO(fullSTO(allData)))));
+  // const calculatedData = ema20(ema50(slowSTO(fastSTO(fullSTO(allData)))));
+  const calculatedData = ema20(ema50(fullSTO(allData)));
   const xScaleProvider = discontinuousTimeScaleProvider.inputDateAccessor(
     (d) => d.date
   );
@@ -154,11 +173,12 @@ const CandleStickChartStoch = (props) => {
 
   return (
     <div className="candlechart">
-      <h2 className="symbolChartH">{symbolName}<span className="priceChartH"> ${data[data.length-1].close} {windowWidth}</span></h2>
-      {/* className={`categoryButtons ${cat.includes(props.category.toUpperCase())? "selected":""}`} */}
+      <h2 className="symbolChartH">{symbolName}<span className="priceChartH"> ${data[data.length-1].close} (windowsWidth)={windowWidth}</span></h2>
       <button className={`periodButtons ${period==='d'?"selected":""}`} onClick={()=>setPeriod('d')}>d</button>
       <button className={`periodButtons ${period==='w'?"selected":""}`} onClick={()=>setPeriod('w')}>w</button>
-      <button className={`periodButtons ${period==='m'?"selected":""}`} onClick={()=>setPeriod('m')}>m</button>
+      {/* <button className={`periodButtons ${period==='m'?"selected":""}`} onClick={()=>setPeriod('m')}>m</button> */}
+      {isPending ? <div ><img src={waiting} className="waitingImg"/></div>:
+
       <ChartCanvas
         height={height}
         ratio={1.25}
@@ -221,7 +241,8 @@ const CandleStickChartStoch = (props) => {
 				</Chart>
         <Chart id={2}
 					yExtents={d => d.volume}
-					height={100} origin={(w, h) => [0, h - 475]}
+					// height={100} origin={(w, h) => [0, h - 475]}
+          height={100} origin={(w, h) => [0, h - 250]}
 				>
 					<YAxis axisAt="left" orient="left" ticks={5} tickFormat={format(".2s")}/>
 
@@ -234,7 +255,8 @@ const CandleStickChartStoch = (props) => {
 				</Chart>
         <Chart id={3}
 					yExtents={[0, 100]}
-					height={125} origin={(w, h) => [0, h - 375]} padding={{ top: 10, bottom: 10 }}
+					// height={125} origin={(w, h) => [0, h - 355]} padding={{ top: 10, bottom: 10 }}
+          height={125} origin={(w, h) => [0, h - 150]} padding={{ top: 10, bottom: 10 }}
 				>
 					<XAxis axisAt="bottom" orient="bottom" {...xGrid} />
 					<YAxis axisAt="right" orient="right"
@@ -261,13 +283,14 @@ const CandleStickChartStoch = (props) => {
 				</Chart>
       <CrossHairCursor />
       </ChartCanvas>
+}
     </div>
   );
 };
 
 export default CandleStickChartStoch;
 
-const processData = (dataReceived) => {
+const processFmData = (dataReceived) => {
   let newData = [];
   // console.log("inside processsData", dataReceived)
   // NEED TO PARSE THE DATE
@@ -293,4 +316,30 @@ const processData = (dataReceived) => {
   return newData;
 };
 
+const processWeeklyVantageData = (dataReceived) => {
+  let newData = [];
+  // console.log("inside processsData", dataReceived)
+  // NEED TO PARSE THE DATE
+  const parseDate = timeParse("%Y-%m-%d");
+  console.log("vantage process", dataReceived)
+  for (let aDay in dataReceived["Weekly Adjusted Time Series"]) {
+        //console.log(aDay)
+    const pointObj = {};
+    const newDate = new Date(parseDate(aDay).getTime());
+    pointObj.date = newDate; //aDay["date"]
+    pointObj.open = parseFloat(dataReceived["Weekly Adjusted Time Series"][aDay]["1. open"]);
+
+    pointObj.high = parseFloat(dataReceived["Weekly Adjusted Time Series"][aDay]["2. high"]);
+    pointObj.low = parseFloat(dataReceived["Weekly Adjusted Time Series"][aDay]["3. low"]);
+    pointObj.close = parseFloat(dataReceived["Weekly Adjusted Time Series"][aDay]["4. close"]);
+    pointObj.volume = parseInt(dataReceived["Weekly Adjusted Time Series"][aDay]["6. volume"]);
+    pointObj.split = "";
+    pointObj.dividend = "";
+    pointObj.absoluteChange = "";
+    pointObj.percentChange = "";
+    newData.unshift(pointObj);
+  }
+  console.log("Vantage Process Data=>",newData)
+  return newData;
+};
 

@@ -70,9 +70,14 @@ const DashboardCol = (props) => {
         />
   })
 
+  const d = new Date();
+  const yesterday = `${d.getDate()-1}`+'-'+`${d.getMonth()+1}`+'-'+d.getFullYear()
+  // console.log("today",today)
+
   return (
-    <div className="mainlist1">
-      <div>({props.category.toUpperCase()})</div>
+    <div className="scrollable">
+      {/* <div>({props.category.toUpperCase()})</div> */}
+      <h6>({yesterday})</h6>
       <table>
         <thead>
           <tr>

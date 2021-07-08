@@ -1,9 +1,9 @@
 // import './App.css';
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import getSingleStockQuoteUrl from './utils.js'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import React, {useState, useEffect } from 'react'
 import firebase from "firebase/app";
-// import "firebase/firestore";
 import "firebase/database";
 import firebaseConfig from './firebaseConfig'
 
@@ -27,7 +27,6 @@ function App() {
             // console.log("snapshot",snapshot.val());
             
             console.log("firebasedb", snapshot.val())
-            let initWatchlit = []
             let promiseAllList = []
             for(let stock of snapshot.val()) {
               const url = getSingleStockQuoteUrl(stock.ticker)
@@ -115,16 +114,16 @@ function App() {
 
 export default App;
 
-const getSingleStockQuoteUrl = (symbol) => {
+// const getSingleStockQuoteUrl = (symbol) => {
   
-  const baseURL = "https://financialmodelingprep.com/api/v3/";
-  const functionType = "quote/";
-  const apiKey =
-    "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
-  const URL = baseURL + functionType + symbol.toUpperCase() + apiKey;
+//   const baseURL = "https://financialmodelingprep.com/api/v3/";
+//   const functionType = "quote/";
+//   const apiKey =
+//     "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
+//   const URL = baseURL + functionType + symbol.toUpperCase() + apiKey;
 
-  return URL;
-}
+//   return URL;
+// }
 
 // PROPS TYPE
 // array, bool, func, number, object, string, symbol

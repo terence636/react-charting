@@ -6,16 +6,16 @@ import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
 import { last } from "react-stockcharts/lib/utils";
 import { XAxis, YAxis } from "react-stockcharts/lib/axes";
 import { BarSeries, CandlestickSeries } from "react-stockcharts/lib/series";
-import { HoverTooltip } from "react-stockcharts/lib/tooltip";
+// import { HoverTooltip } from "react-stockcharts/lib/tooltip";
 
 // I NEED CHART TYPE AND DATA IN PROPS
 const CandleStickChartSimple = (props) => {
   // State
   const [error, setError] = useState(null);
-  const [isPending, setIsPending] = useState(false);
+  // const [isPending, setIsPending] = useState(false);
   const [allData, setAllData] = useState(null);
   const [symbolName, setSymbolName] = useState("")
-  const [width, setWidth] = useState(window.innerWidth)
+  // const [width, setWidth] = useState(window.innerWidth)
 
   // Below are for financial modelling grep
   // https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=demo
@@ -28,10 +28,10 @@ const CandleStickChartSimple = (props) => {
 
   console.log("apiKey", apiKey);
 
-  const updateDimensions = () => {
-    const width = window.innerWidth -200
-    setWidth(width)
-  }
+  // const updateDimensions = () => {
+  //   const width = window.innerWidth -200
+  //   setWidth(width)
+  // }
 
   useEffect(() => {
 
@@ -48,7 +48,7 @@ const CandleStickChartSimple = (props) => {
         return res.json();
       })
       .then((dataReceived) => {
-        setIsPending(false);
+        // setIsPending(false);
         // console.log("data =>", data);
         // console.log("Error MSg =>", data["Error Message"])
         if (dataReceived["Error Message"] !== undefined)
@@ -79,7 +79,7 @@ const CandleStickChartSimple = (props) => {
         // HERE IS TO CATCH NETWORK ERROR
         // console.log("Network Err =>", err.message)
         // console.log("Fail to Fecth =>", err.message)
-        setIsPending(false);
+        // setIsPending(false);
         setError(err.message);
       });
   }, [props.symbolParam]);

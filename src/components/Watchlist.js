@@ -3,6 +3,7 @@ import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
 import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
 import React, { useState } from 'react'
 import ModalVerticallyCentered from './ModalVerticallyCentered'
+// import getSingleStockQuoteUrl from '../utils.js'
 
 
 const Watchlist = (props) => {
@@ -13,11 +14,15 @@ const Watchlist = (props) => {
 
     console.log("Moreinfo from watchlist")
     //Fectch symbol data and add to watchlist
+    // getSingleStockQuoteUrl
+
     const baseURL = "https://financialmodelingprep.com/api/v3/";
     const functionType = "profile/";
     const apiKey =
       "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
     const URL = baseURL + functionType + symbol + apiKey;
+
+    // const URL = getSingleStockQuoteUrl(symbol)
   
     fetch(URL)
       .then((res) => {
@@ -50,7 +55,6 @@ const Watchlist = (props) => {
         return (
             <tr key={index}>
                 <td><Link to={`/Dashboard/${stock.ticker}`} onClick={()=>props.setSymbol(stock.ticker)}>{stock.ticker}</Link></td>
-                {/* <td>{stock.ticker}</td> */}
                 <td>{stock.price}</td>
                 <td>{stock.changesPercentage}</td>
                 <td><DeleteForeverTwoToneIcon onClick={()=>props.onRemoveWatchList(stock.ticker)} /></td>
@@ -62,8 +66,8 @@ const Watchlist = (props) => {
     })
 
     return (
-      <div className="watchlist">
-      <div>WATCHLIST</div>
+      <div className="scrollable">
+      <h6>WATCHLIST</h6>
         <table>
         <thead>
           <tr>
