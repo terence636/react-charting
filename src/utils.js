@@ -3,7 +3,7 @@ const getSingleStockQuoteUrl = (symbol) => {
     const baseURL = "https://financialmodelingprep.com/api/v3/";
     const functionType = "quote/";
     const apiKey =
-      "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
+      "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY1;
     const URL = baseURL + functionType + symbol.toUpperCase() + apiKey;
   
     return URL;
@@ -21,7 +21,7 @@ const getWeeklyStockQuoteUrlFromVantage = (symbol) => {
 const getSingleStockHistoricalUrl = (symbol) => {
     const baseURL = "https://financialmodelingprep.com/api/v3/";
   const functionType = "historical-price-full/";
-  const apiKey = "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
+  const apiKey = "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY1;
   const URL = baseURL + functionType + symbol + apiKey;
   return URL
 }

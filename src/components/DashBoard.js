@@ -39,21 +39,6 @@ const catSelection = (state, action) => {
 const DashBoard = ({ symbol, setSymbol, watchlist, onAddWatchList, onRemoveWatchList}) => {
     
     const [category, dispatch] = React.useReducer(catSelection, "actives")
-    // const [watchlist, setWatchList] = useState([])
-    
-    // const onAddWatchList = (stockObj) => {
-    //   if(watchlist.every(s=>s.ticker !== stockObj.ticker))
-    //   // if(watchlist.includes(symbol) === false)
-    //     setWatchList(prev=>[...prev,stockObj])
-    //   console.log(stockObj)
-    //   console.log(watchlist)
-    // }
-
-    // const onRemoveWatchList = (symbol) => {
-    //   // const index = wathclist.findIndex(symbol)
-    //   const newlist = watchlist.filter((d)=>d.ticker !== symbol)
-    //     setWatchList(newlist)
-    // }
   
     let { symbolParam } = useParams();
     console.log("Param is", symbolParam)

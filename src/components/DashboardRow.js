@@ -20,7 +20,7 @@ const onMoreInfo = () => {
   const baseURL = "https://financialmodelingprep.com/api/v3/";
   const functionType = "profile/";
   const apiKey =
-    "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
+    "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY1;
   const URL = baseURL + functionType + symbol + apiKey;
 
   fetch(URL)

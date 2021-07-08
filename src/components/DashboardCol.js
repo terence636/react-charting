@@ -18,7 +18,7 @@ const DashboardCol = (props) => {
 
     const baseURL = "https://financialmodelingprep.com/api/v3/";
     const functionType = props.category; //"actives";
-    const apiKey = "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
+    const apiKey = "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY1;
     const URL = baseURL + functionType + apiKey;
 
   useEffect(() => {

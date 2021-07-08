@@ -100,7 +100,7 @@ const Header = ({ symbol, setSymbol, onAddWatchList }) => {
       </div>
       {/* </div> */}
       <div className="nav-item">
-        Version 7.7
+        {/* Version 7.7 */}
       </div>
     </div>
   );

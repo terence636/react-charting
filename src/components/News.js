@@ -16,7 +16,7 @@ const News = (props) => {
     const functionType = "stock_news"; //"actives";
     const symbolName = `?tickers=${symbolParam}` //"?tickers=AAPL" //`tickers=${props.symbol}`;
     const limit = "&limit=5" //"BABA"; // PUT props.symbol here
-    const apiKey = "&apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
+    const apiKey = "&apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY1;
     const URL = baseURL + functionType + symbolName + limit + apiKey;
     // https://financialmodelingprep.com/api/v3/stock_news?tickers=AAPL,FB,GOOG,AMZN&limit=50&apikey=demo
 

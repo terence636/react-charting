@@ -171,9 +171,11 @@ const CandleStickChartStoch = (props) => {
   const end = xAccessor(data[Math.max(0, data.length - 150)]);
   const xExtents = [start, end];
 
+  // (windowsWidth)={windowWidth}
+  
   return (
     <div className="candlechart">
-      <h2 className="symbolChartH">{symbolName}<span className="priceChartH"> ${data[data.length-1].close} (windowsWidth)={windowWidth}</span></h2>
+      <h2 className="symbolChartH">{symbolName}<span className="priceChartH"> ${data[data.length-1].close} </span></h2>
       <button className={`periodButtons ${period==='d'?"selected":""}`} onClick={()=>setPeriod('d')}>d</button>
       <button className={`periodButtons ${period==='w'?"selected":""}`} onClick={()=>setPeriod('w')}>w</button>
       {/* <button className={`periodButtons ${period==='m'?"selected":""}`} onClick={()=>setPeriod('m')}>m</button> */}
