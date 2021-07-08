@@ -3,7 +3,7 @@
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import React, {useState, useEffect } from 'react'
 import firebase from "firebase/app";
-import "firebase/firestore";
+// import "firebase/firestore";
 import "firebase/database";
 import firebaseConfig from './firebaseConfig'
 
@@ -25,15 +25,42 @@ function App() {
     firebase.database().ref('watchlist/').once('value').then((snapshot) => {
       if (snapshot.exists()) {
             // console.log("snapshot",snapshot.val());
-            const symbolList=snapshot.val()
-            console.log("firebasedb", symbolList)
-            let initWatchlit = []
-            for(let ticker of snapshot.val()) {
-              const temp = {ticker, price: "", changePercentage:""}
-              initWatchlit.push(temp)
-            }
             
-            setWatchList(initWatchlit)
+            console.log("firebasedb", snapshot.val())
+            let initWatchlit = []
+            let promiseAllList = []
+            for(let stock of snapshot.val()) {
+              const url = getSingleStockQuoteUrl(stock.ticker)
+              const promise = new Promise((resolve,reject)=>resolve(fetch(url)))
+              promiseAllList.push(promise)
+            }
+            console.log("promiseall - list",promiseAllList)
+
+            // const url1 = getSingleStockQuoteUrl(snapshot.val()[0])
+            Promise.all([...promiseAllList])
+            .then( (responses) => {
+              return Promise.all(
+                responses.map( (response) => {
+                  return response.json();
+                })
+              );
+            })
+            .then( (data) => {
+              console.log("promiseall - data", data)
+              let initWatchlit = []
+              for(let stock of data) {
+                const temp = {ticker: stock[0].symbol, price: stock[0].price, changesPercentage: stock[0].changesPercentage}
+                initWatchlit.push(temp)
+              }
+              setWatchList(initWatchlit)
+            })
+            .catch( (error) => {
+              console.log("promiseall error =>", error)
+            })
+
+            // const temp = {ticker, price: "", changePercentage:""}
+            //   initWatchlit.push(temp)
+            // setWatchList(initWatchlit)
           } else {
             console.log("No data available");
           }
@@ -60,9 +87,14 @@ function App() {
 
 
    const onAddWatchList = (stockObj) => {
-      if(watchlist.every(s=>s.ticker !== stockObj.ticker))
+      if(watchlist.every(s=>s.ticker !== stockObj.ticker)) {
       // if(watchlist.includes(symbol) === false)
         setWatchList(prev=>[...prev,stockObj])
+        //WRITE TO FIREBASE DB
+        firebase.database().ref('watchlist/').set(
+          [...watchlist, stockObj]      
+        )
+      }
       console.log(stockObj)
       console.log(watchlist)
     }
@@ -96,6 +128,16 @@ function App() {
 
 export default App;
 
+const getSingleStockQuoteUrl = (symbol) => {
+  
+  const baseURL = "https://financialmodelingprep.com/api/v3/";
+  const functionType = "quote/";
+  const apiKey =
+    "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
+  const URL = baseURL + functionType + symbol.toUpperCase() + apiKey;
+
+  return URL;
+}
 
 // PROPS TYPE
 // array, bool, func, number, object, string, symbol

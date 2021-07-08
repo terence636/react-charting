@@ -2,6 +2,9 @@ import React, { useRef, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { IconButton } from "@material-ui/core";
+import firebase from "firebase/app";
+import "firebase/database";
+import firebaseConfig from '../firebaseConfig.js'
 // import {AddToQueue, RemoveFromQueue} from "@material-ui/icons"
 
 const Header = ({ symbol, setSymbol, onAddWatchList }) => {
@@ -16,9 +19,9 @@ const Header = ({ symbol, setSymbol, onAddWatchList }) => {
   };
 
   const handleAddToWatch = () => {
-    // console.log("add");
+ 
     if (inputRefSymbol.current.value === "") return;
-    //Fectch symbol data and add to watchlist
+    //Fectch individual symbol data and add to watchlist
     const baseURL = "https://financialmodelingprep.com/api/v3/";
     const functionType = "quote/";
     const symbol = inputRefSymbol.current.value.toUpperCase();
@@ -46,7 +49,9 @@ const Header = ({ symbol, setSymbol, onAddWatchList }) => {
                                             `+${dataReceived[0].changesPercentage}` : dataReceived[0].changesPercentage
         console.log("Header Add Watch =>", dataReceived[0]);
         inputRefSymbol.current.value = "";
-        onAddWatchList(dataReceived[0]);
+        onAddWatchList(dataReceived[0])
+           
+
       })
       .catch((err) => {
         console.log(err)
