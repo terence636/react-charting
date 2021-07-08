@@ -1,26 +1,36 @@
-# Your Project Title
-
-One Paragraph of project description goes here
+# iChart
 
 ## Description
 
 A description of your project. Explain what is the project about and what is the use for it.
 
+An app that allow user to view a daily or weekly stock chart for a particular US company.
+And also to view its latest news 
+
+
 ### Technical Used
 What technologies you used that helped you build this project. 
-
 ```
-Example:
-
 - React
-- Bootstrap with react
-- Ajax (axios) for API
-- etc..
+- React Bootstrap
+- React Router
+- Reat stockcharts @ github.com/rrag/react-stockcharts
+- Firebase
+- Material-UI
+- AJAX (fetch) for API
+- FinancialModellingPrep API
+- AlphaVantage API
 ```
 
 ### Wireframes
 
-Your step by step planning sketch of your project, that you can post them as an image in here.
+DASHBOARD SCREEN
+
+Screenshot 2021-07-08 at 10.29.56 PM<img width="1435" alt="Screenshot 2021-07-08 at 10 29 56 PM" src="https://user-images.githubusercontent.com/32205869/124939961-23e80580-e03c-11eb-82ca-d82297f4323a.png">
+
+NEWS SCREEN
+
+
 
 ### User Stories
 
