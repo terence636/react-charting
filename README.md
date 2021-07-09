@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+# iChart
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+An app that allow investor to do some technical analysis of US stocks.
+Help them make informed decision before buying the stock. 
 
-In the project directory, you can run:
 
-### `npm start`
+### Dependencies for this project are:-
+```
+- React
+- React Bootstrap
+- React Router
+- React stockcharts - Ragu Ramaswamy  @github.com/rrag/react-stockcharts
+- Firebase
+- Material-UI
+- FinancialModellingPrep API
+- AlphaVantage API
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Wireframes
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+There are 2 main screens, namely the Dashboard and News
 
-### `npm test`
+DASHBOARD SCREEN
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img width="1435" alt="Screenshot 2021-07-08 at 10 29 56 PM" src="https://user-images.githubusercontent.com/32205869/124939961-23e80580-e03c-11eb-82ca-d82297f4323a.png">
 
-### `npm run build`
+NEWS SCREEN
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img width="1437" alt="Screenshot 2021-07-08 at 10 36 36 PM" src="https://user-images.githubusercontent.com/32205869/124941040-11220080-e03d-11eb-88bc-4979d8a34115.png">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### User Stories
 
-### `npm run eject`
+A story of the project user, that explains the use of the project.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+As for now, there are 4 categories available:-
+(Due to limitations of free API calls, not able to have a stock screening application)
+(1 API call for 1 stock and US market has thousand of stocks)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+- Most Actives - 1 API call
+- Top Gainers - 1 API call
+- Top Losers - 1 API call
+- Watchlist - Each stock 1 API call 
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Clicking on stock symbol will bring up the stock chart
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Chart 
 
-### Code Splitting
+- Candlestick chart with 20/50 EMA. 
+- Daily and Weekly selection
+  - Single candle represent daily or wekkly
+- Full stochastics indicator (Green line is fast and pink line is slow)
+- Volume bar
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+Example:
 
-### Analyzing the Bundle Size
+User must be able to:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- View Example
+- Blablabla
+- Search Example
+- Fine Example
+- etc..
 
-### Making a Progressive Web App
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Planning and Development Process
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+A basic story of your planning and developing this project.
 
-### Deployment
+### Problem-Solving Strategy
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+What strategy did you use to solve your problems.
 
-### `npm run build` fails to minify
+### Unsolved problems
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+List unsolved problems which would be fixed in future iterations.
+
+## APIs Used
+
+List your APIs you have used in this project and explain why did you use it.
+
+---
+
+## Acknowledgments
+
+
+---
+
+ ## References
