@@ -89,7 +89,7 @@ const Header = ({ symbol, setSymbol, onAddWatchList }) => {
       </div>
       <div>
         <button className="letsgo" onClick={handleLetsGo}>
-          Let's Go...
+          View
         </button>
       </div>
       <div>

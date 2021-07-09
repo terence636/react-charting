@@ -6,7 +6,7 @@ An app that allow investor to do some technical analysis of US stocks.
 Help them make informed decision before buying the stock. 
 
 
-### Dependencies for this project are:-
+## Dependencies for this project are:-
 ```
 - React
 - React Bootstrap
@@ -14,11 +14,16 @@ Help them make informed decision before buying the stock.
 - React stockcharts - Ragu Ramaswamy  @github.com/rrag/react-stockcharts
 - Firebase
 - Material-UI
+```
+
+## APIs Used
+
+```
 - FinancialModellingPrep API
 - AlphaVantage API
 ```
 
-### Wireframes
+## Wireframes
 
 There are 2 main screens, namely the Dashboard and News
 
@@ -31,14 +36,17 @@ NEWS SCREEN
 <img width="1437" alt="Screenshot 2021-07-08 at 10 36 36 PM" src="https://user-images.githubusercontent.com/32205869/124941040-11220080-e03d-11eb-88bc-4979d8a34115.png">
 
 
-### User Stories
 
-A story of the project user, that explains the use of the project.
+## Planning and Development Process
+
+- Due to limitations of free API calls, not able to have a stock screening application
+- As we need 1 API call for 1 stock and US market has thousand of stocks. Hence not feasible
 
 
-As for now, there are 4 categories available:-
-(Due to limitations of free API calls, not able to have a stock screening application)
-(1 API call for 1 stock and US market has thousand of stocks)
+
+## User Stories
+
+As for now, there are 4 categories for Dashboard  area:-
 
 ```
 - Most Actives - 1 API call
@@ -47,11 +55,21 @@ As for now, there are 4 categories available:-
 - Watchlist - Each stock 1 API call 
 ```
 
+- Click on the category item, will list the stocks at the Stock Listing Section Column
 - Clicking on stock symbol will bring up the stock chart
+- Click '+' icon to add to watchlist
+- Click 'i' icon for company info
+- Watchlist readme from firebase real-time DB
+- At the header, enter a stock symbol, click on 'Add to watch' to add to watch list
+- click on 'view' to view the chart or view the news depending on which main page you are in 
 
 
+As for news page:-
+- enter symbol and click view will display 5 news 
+- click on news details will bring you to the news website
 
-# Chart 
+
+## Chart 
 
 - Candlestick chart with 20/50 EMA. 
 - Daily and Weekly selection
@@ -59,42 +77,30 @@ As for now, there are 4 categories available:-
 - Full stochastics indicator (Green line is fast and pink line is slow)
 - Volume bar
 
-```
-Example:
-
-User must be able to:
-
-- View Example
-- Blablabla
-- Search Example
-- Fine Example
-- etc..
-
-```
-
----
-
-## Planning and Development Process
-
-A basic story of your planning and developing this project.
-
-### Problem-Solving Strategy
-
-What strategy did you use to solve your problems.
-
-### Unsolved problems
-
-List unsolved problems which would be fixed in future iterations.
-
-## APIs Used
-
-List your APIs you have used in this project and explain why did you use it.
-
----
-
-## Acknowledgments
 
 
----
+## Problem-Solving Strategy
+
+- React router param for chart and news
+- useEffect and fetch() method for API request. Will trigger re-render and API request when param or state change
+- For wathclist, using promise.all. One API call for each stock
+- WindowWidth event listener to resize the chart according
+- CSS @media and grid col to resize the column according to window width 
+
+
+
+## Unsolved problems / Further development
+
+- Real-time chart. Inorporate latest data into chart
+- Real-time data for watchlist or a button click to update latest price
+- Additional Category e.g. Index, Crypto
+
 
  ## References
+
+```
+Ragu Ramaswamy  @github.com/rrag/react-stockcharts
+AlphaVantage API
+FinancialModellingPrep API
+
+```
