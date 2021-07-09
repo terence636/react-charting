@@ -1,4 +1,3 @@
-// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import getSingleStockQuoteUrl from './utils.js'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import React, {useState, useEffect } from 'react'
@@ -22,8 +21,6 @@ function App() {
     firebase.initializeApp(firebaseConfig);
     firebase.database().ref('watchlist/').once('value').then((snapshot) => {
       if (snapshot.exists()) {
-            // console.log("snapshot",snapshot.val());
-            
             console.log("firebasedb", snapshot.val())
             let promiseAllList = []
             for(let stock of snapshot.val()) {
@@ -31,9 +28,6 @@ function App() {
               const promise = new Promise((resolve,reject)=>resolve(fetch(url)))
               promiseAllList.push(promise)
             }
-            console.log("promiseall - list",promiseAllList)
-
-            // const url1 = getSingleStockQuoteUrl(snapshot.val()[0])
             Promise.all([...promiseAllList])
             .then( (responses) => {
               return Promise.all(
@@ -43,7 +37,6 @@ function App() {
               );
             })
             .then( (data) => {
-              console.log("promiseall - data", data)
               let initWatchlit = []
               for(let stock of data) {
                 const temp = {ticker: stock[0].symbol, price: stock[0].price, changesPercentage: stock[0].changesPercentage}
@@ -65,10 +58,8 @@ function App() {
 
    const onAddWatchList = (stockObj) => {
       if(watchlist.every(s=>s.ticker !== stockObj.ticker)) {
-      // if(watchlist.includes(symbol) === false)
         setWatchList(prev=>[...prev,stockObj])
         //WRITE TO FIREBASE DB
-        // firebase.initializeApp(firebaseConfig);
         firebase.database().ref('watchlist/').set(
           [...watchlist, stockObj]      
         )
@@ -78,16 +69,13 @@ function App() {
     }
 
     const onRemoveWatchList = (symbol) => {
-      // const index = wathclist.findIndex(symbol)
       const newlist = watchlist.filter((d)=>d.ticker !== symbol) 
         setWatchList(newlist)
-        // firebase.initializeApp(firebaseConfig);
         firebase.database().ref('watchlist/').set(newlist)  
     }
 
   return (
     <Router>
-    {/* <div className="App"> */}
     <div>
       <Header symbol={symbol} setSymbol={setSymbol} onAddWatchList={onAddWatchList}/>
       <Switch>
@@ -108,16 +96,3 @@ function App() {
 
 export default App;
 
-// const getSingleStockQuoteUrl = (symbol) => {
-  
-//   const baseURL = "https://financialmodelingprep.com/api/v3/";
-//   const functionType = "quote/";
-//   const apiKey =
-//     "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
-//   const URL = baseURL + functionType + symbol.toUpperCase() + apiKey;
-
-//   return URL;
-// }
-
-// PROPS TYPE
-// array, bool, func, number, object, string, symbol

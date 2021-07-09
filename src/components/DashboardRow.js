@@ -10,10 +10,6 @@ const DashboardRow = ({ symbol, price, change, setSymbol, isAdded, onAddWatchLis
   const [modalShow, setModalShow] = useState(false)
   
 
-// const handleSymbolClick = () => {
-//     setSymbol(symbol)
-// }
-
 const onMoreInfo = () => {
   console.log("moreInfo from mainlist")
   //Fectch symbol data and add to watchlist
@@ -56,7 +52,8 @@ return (
     <tr>
       <td><Link to={symbol} onClick={()=>setSymbol(symbol)}>{symbol}</Link></td>
       <td>{price}</td>
-      <td>{change}</td>
+      <td>{Math.sign(parseFloat(change))===1 ? <span className="upChanges">{change}</span> : <span className="downChanges">{change}</span>}</td>
+      {/* <td><span className="upChanges">{change}</span></td> */}
       {/* <td><AddToWatch symbol={symbol} isAdded={isAdded} onAddWatchListToggle={onAddWatchListToggle}/></td> */}
       {/* onClick={props.onAddWatchListToggle} */}
       {/* <AddToQueue /> */}

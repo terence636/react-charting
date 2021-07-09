@@ -56,7 +56,9 @@ const Watchlist = (props) => {
             <tr key={index}>
                 <td><Link to={`/Dashboard/${stock.ticker}`} onClick={()=>props.setSymbol(stock.ticker)}>{stock.ticker}</Link></td>
                 <td>{stock.price}</td>
-                <td>{stock.changesPercentage}</td>
+                {/* <td>{stock.changesPercentage}</td> */}
+                <td>{Math.sign(parseFloat(stock.changesPercentage))===1 ? <span className="upChanges">{stock.changesPercentage}</span> 
+                : <span className="downChanges">{stock.changesPercentage}</span>}</td>
                 <td><DeleteForeverTwoToneIcon onClick={()=>props.onRemoveWatchList(stock.ticker)} /></td>
                 <td><InfoTwoToneIcon onClick={()=>onMoreInfo(stock.ticker)}/></td>
             </tr>

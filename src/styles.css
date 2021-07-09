@@ -136,7 +136,13 @@ td {
   margin: 20px;
 }
 
+.upChanges {
+  color: green;
+}
 
+.downChanges {
+  color: red;
+}
 /* 
 .mainlist {
   height: 110vh;

@@ -51,7 +51,6 @@ const DashboardCol = (props) => {
       })
       .catch((err) => {
         // HERE IS TO CATCH NETWORK ERROR
-        // setIsPending(false);
         setErrorState(err.message);
       });
   }, [props.category]);
@@ -76,7 +75,6 @@ const DashboardCol = (props) => {
 
   return (
     <div className="scrollable">
-      {/* <div>({props.category.toUpperCase()})</div> */}
       <h6>({yesterday})</h6>
       <table>
         <thead>
