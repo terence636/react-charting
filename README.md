@@ -2,13 +2,11 @@
 
 ## Description
 
-An app that allow user to view a daily or weekly stock chart for a particular US company.
-And also to view its latest news 
+An app that allow investor to do some technical analysis of US stocks.
+Help them make informed decision before buying the stock. 
 
 
-### Technical Used
-
-Dependencies for this project are:-
+### Dependencies for this project are:-
 ```
 - React
 - React Bootstrap
@@ -16,12 +14,13 @@ Dependencies for this project are:-
 - React stockcharts - Ragu Ramaswamy  @github.com/rrag/react-stockcharts
 - Firebase
 - Material-UI
-- AJAX (fetch) for API
 - FinancialModellingPrep API
 - AlphaVantage API
 ```
 
 ### Wireframes
+
+There are 2 main screens, namely the Dashboard and News
 
 DASHBOARD SCREEN
 
@@ -36,12 +35,29 @@ NEWS SCREEN
 
 A story of the project user, that explains the use of the project.
 
-As for now, there are 4 categories available:-
-- Most Actives
-- Top Gainers
-- Top Losers
-- Watchlist
 
+As for now, there are 4 categories available:-
+(Due to limitations of free API calls, not able to have a stock screening application)
+(1 API call for 1 stock and US market has thousand of stocks)
+
+```
+- Most Actives - 1 API call
+- Top Gainers - 1 API call
+- Top Losers - 1 API call
+- Watchlist - Each stock 1 API call 
+```
+
+- Clicking on stock symbol will bring up the stock chart
+
+
+
+# Chart 
+
+- Candlestick chart with 20/50 EMA. 
+- Daily and Weekly selection
+  - Single candle represent daily or wekkly
+- Full stochastics indicator (Green line is fast and pink line is slow)
+- Volume bar
 
 ```
 Example:
