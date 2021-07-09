@@ -2,10 +2,8 @@ import React, { useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 // import { IconButton } from "@material-ui/core";
-// import firebase from "firebase/app";
 import "firebase/database";
-// import firebaseConfig from '../firebaseConfig.js'
-// import {AddToQueue, RemoveFromQueue} from "@material-ui/icons"
+import getSingleStockQuoteUrl from '../utils'
 
 const Header = ({ symbol, setSymbol, onAddWatchList }) => {
   const inputRefSymbol = useRef();
@@ -26,8 +24,9 @@ const Header = ({ symbol, setSymbol, onAddWatchList }) => {
     const functionType = "quote/";
     const symbol = inputRefSymbol.current.value.toUpperCase();
     const apiKey =
-      "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
-    const URL = baseURL + functionType + symbol + apiKey;
+      "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY1;
+    // const URL = baseURL + functionType + symbol + apiKey;
+    const URL = getSingleStockQuoteUrl(inputRefSymbol.current.value.toUpperCase())
 
     fetch(URL)
       .then((res) => {
@@ -72,7 +71,7 @@ const Header = ({ symbol, setSymbol, onAddWatchList }) => {
       {/* <div className="nav-item"><span className="nav-logo"><Link to="/">AWESOMECHART</Link></span></div> */}
       {/* <div className="nav-item"><Link to="/"><span className="nav-logo">AWESOMECHART</span></Link></div> */}
       <div className="nav-item">
-        <span className="nav-logo">iFinance</span>
+        <span className="nav-logo">iCHART</span>
       </div>
       <div className="nav-item">
         <Link to={`/Dashboard/${symbol}`}>Dashboard</Link>

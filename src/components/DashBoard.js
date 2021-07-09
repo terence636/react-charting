@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap"
-// import CandleStickChartSimple from "./CandleStickChartSimple";
 import Category from './Category.js'
 import DashboardCol from './DashboardCol'
 import Watchlist from './Watchlist'
