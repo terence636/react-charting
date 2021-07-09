@@ -37,14 +37,10 @@ NEWS SCREEN
 
 
 
-## Planning and Development Process
+## User Stories
 
 - Due to limitations of free API calls, not able to have a stock screening application
 - As we need 1 API call for 1 stock and US market has thousand of stocks. Hence not feasible
-
-
-
-## User Stories
 
 As for now, there are 4 categories for Dashboard  area:-
 
@@ -79,22 +75,48 @@ As for news page:-
 
 
 
-## Problem-Solving Strategy
+## Development Design
 
-- React router param for chart and news
-- useEffect and fetch() method for API request. Will trigger re-render and API request when param or state change
+- React Compononents
+
+```
+- Header
+- Category
+- Dashboard Column
+- Dashboard Row
+- Chart
+- Watchlist
+- Modal - (React Bootstrap)
+- News - (Bootstrap Card)
+```
+
+- React Router
+
+```
+- Dasboard/{symbol}
+- News/{symbol}
+```
+
 - For wathclist, using promise.all. One API call for each stock
+- Firebase database for watchlist 
+- useReducer for category selection
+- useEffect and fetch() method for API request. Will trigger re-render and API request when param or state change
 - WindowWidth event listener to resize the chart according
 - CSS @media and grid col to resize the column according to window width 
 
 
 
-## Unsolved problems / Further development
+## Further development
 
+- Code Refactoring (DRY stuffs)
 - Real-time chart. Inorporate latest data into chart
 - Real-time data for watchlist or a button click to update latest price
-- Additional Category e.g. Index, Crypto
-
+- Additional Category e.g. Index, Crypto, Screening
+- Monthly chart
+- Dropdown list for symbol input box
+- Responsive for mobile
+- Login page
+- Error handling
 
  ## References
 

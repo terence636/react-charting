@@ -1,4 +1,3 @@
-// import './App.css';
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import getSingleStockQuoteUrl from './utils.js'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
@@ -12,7 +11,6 @@ import firebaseConfig from './firebaseConfig'
 import Header from './components/Header'
 import DashBoard from './components/DashBoard';
 import News from './components/News'
-// import Home from './components/Home'
 
 function App() {
   const [symbol, setSymbol] = useState("AAPL")
@@ -56,10 +54,6 @@ function App() {
             .catch( (error) => {
               console.log("promiseall error =>", error)
             })
-
-            // const temp = {ticker, price: "", changePercentage:""}
-            //   initWatchlit.push(temp)
-            // setWatchList(initWatchlit)
           } else {
             console.log("No data available");
           }
