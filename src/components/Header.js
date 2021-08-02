@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
-// import { IconButton } from "@material-ui/core";
 import "firebase/database";
 import getSingleStockQuoteUrl from '../utils'
 
@@ -11,20 +10,24 @@ const Header = ({ symbol, setSymbol, onAddWatchList }) => {
 
   const handleLetsGo = () => {
     console.log("Handle Lets Go",inputRefSymbol.current.value);
+    if(inputRefSymbol.current.value === "")
+      alert("Please enter a symbol")
+    else {
     history.push(inputRefSymbol.current.value.toUpperCase());
     setSymbol(inputRefSymbol.current.value.toUpperCase());
     inputRefSymbol.current.value = "";
+    }
   };
 
   const handleAddToWatch = () => {
  
     if (inputRefSymbol.current.value === "") return;
     //Fectch individual symbol data and add to watchlist
-    const baseURL = "https://financialmodelingprep.com/api/v3/";
-    const functionType = "quote/";
-    const symbol = inputRefSymbol.current.value.toUpperCase();
-    const apiKey =
-      "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY1;
+    // const baseURL = "https://financialmodelingprep.com/api/v3/";
+    // const functionType = "quote/";
+    // const symbol = inputRefSymbol.current.value.toUpperCase();
+    // const apiKey =
+    //   "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY1;
     // const URL = baseURL + functionType + symbol + apiKey;
     const URL = getSingleStockQuoteUrl(inputRefSymbol.current.value.toUpperCase())
 

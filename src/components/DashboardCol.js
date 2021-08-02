@@ -53,7 +53,7 @@ const DashboardCol = (props) => {
         // HERE IS TO CATCH NETWORK ERROR
         setErrorState(err.message);
       });
-  }, [props.category]);
+  }, [props.category,URL]);
 
   // {errorState && <div>state err.message - {errorState}</div>}
   if (errorState !== null) return <div>Error - {errorState}</div>

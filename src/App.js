@@ -88,6 +88,12 @@ function App() {
         <Route path="/Dashboard/:symbolParam" >
           <DashBoard symbol={symbol} setSymbol={setSymbol} watchlist={watchlist} onAddWatchList={onAddWatchList} onRemoveWatchList={onRemoveWatchList}/>,
         </Route>
+        <Route exact path ="/Dashboard">
+          <Redirect to={`/Dashboard/${symbol}`} />
+        </Route>
+        <Route path="/News">
+        <Redirect to={`/News/AAPL`} />
+        </Route>
       </Switch>
     </div>
     </Router>

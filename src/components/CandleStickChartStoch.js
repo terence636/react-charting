@@ -26,7 +26,7 @@ import {
 	StochasticTooltip,
 } from "react-stockcharts/lib/tooltip";
 import { ema, stochasticOscillator } from "react-stockcharts/lib/indicator";
-import { HoverTooltip } from "react-stockcharts/lib/tooltip";
+// import { HoverTooltip } from "react-stockcharts/lib/tooltip";
 import { getSingleStockHistoricalUrl, getWeeklyStockQuoteUrlFromVantage } from '../utils'
 import waiting from '../waiting.jpeg'
 
@@ -55,15 +55,6 @@ const CandleStickChartStoch = (props) => {
     URL = getSingleStockHistoricalUrl(props.symbolParam)
   else if(period === 'w')
     URL = getWeeklyStockQuoteUrlFromVantage(props.symbolParam)
-  // URL = "https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=BABA&apikey=XW0YLMZBBXDYRUEK"
-  // console.log("URL vantage=>",URL)
-  // const baseURL = "https://financialmodelingprep.com/api/v3/";
-  // const functionType = "historical-price-full/";
-  // const symbol = props.symbolParam //"BABA"; // PUT props.symbol here
-  // const apiKey = "?apikey=" + process.env.REACT_APP_FINANCIALMODELINGPREP_API_KEY;
-  // const URL = baseURL + functionType + symbol + apiKey;
-  // const URL1 = 'https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=316ff3fb75ec7264440cd255a2cede4e'
-  // console.log("apiKey", apiKey);
 
   let chartWidth = windowWidth-600
   if(windowWidth < 1200)
@@ -154,7 +145,7 @@ const CandleStickChartStoch = (props) => {
       .catch((err) => {
         setError(err.message);
       });
-  }, [props.symbolParam,period]);
+  }, [props.symbolParam,period,URL]);
 
   // if(period === 'w')
   //   return <>{period}</>
@@ -171,7 +162,6 @@ const CandleStickChartStoch = (props) => {
   const end = xAccessor(data[Math.max(0, data.length - 150)]);
   const xExtents = [start, end];
 
-  // (windowsWidth)={windowWidth}
   
   return (
     <div className="candlechart">
@@ -179,7 +169,7 @@ const CandleStickChartStoch = (props) => {
       <button className={`periodButtons ${period==='d'?"selected":""}`} onClick={()=>setPeriod('d')}>d</button>
       <button className={`periodButtons ${period==='w'?"selected":""}`} onClick={()=>setPeriod('w')}>w</button>
       {/* <button className={`periodButtons ${period==='m'?"selected":""}`} onClick={()=>setPeriod('m')}>m</button> */}
-      {isPending ? <div ><img src={waiting} className="waitingImg"/></div>:
+      {isPending ? <div ><img src={waiting} className="waitingImg" alt="waiting"/></div>:
 
       <ChartCanvas
         height={height}

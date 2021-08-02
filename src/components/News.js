@@ -20,10 +20,10 @@ const News = (props) => {
     const URL = baseURL + functionType + symbolName + limit + apiKey;
     // https://financialmodelingprep.com/api/v3/stock_news?tickers=AAPL,FB,GOOG,AMZN&limit=50&apikey=demo
 
-    console.log("News Component =>",props.symbol)
-    console.log(URL)
+    // console.log("News Component =>",props.symbol)
+    // console.log(URL)
     useEffect(() => {
-      console.log("inside new use effect")
+      // console.log("inside new use effect")
         fetch(URL)
           .then((res) => {
             console.log(res);
@@ -50,7 +50,7 @@ const News = (props) => {
             // setIsPending(false);
             setErrorState(err.message);
           });
-      }, [symbolParam]);
+      }, [symbolParam,URL]);
 
 
       if (errorState !== null) return <div>{errorState}</div>;
